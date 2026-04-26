@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {
-  Palette, Code2, Type, Wand2, ArrowUpRight, Zap, Sparkles, Mail, Phone,
-  Briefcase, GraduationCap, FileImage, Languages, Database, Video,
+  Palette, Type, Wand2, ArrowUpRight, Zap, Sparkles, Mail, Phone,
+  Briefcase, GraduationCap, FileImage, Languages, Video,
   FileSpreadsheet, ArrowRight, Cpu, Brain,
 } from "lucide-react";
 import profile from "@/assets/work/profile.jpg";
