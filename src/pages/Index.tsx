@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import {
   Palette, Code2, Type, Wand2, ArrowUpRight, Zap, Sparkles, Mail, Phone,
   Briefcase, GraduationCap, FileImage, Languages, Database, Video,
-  FileSpreadsheet, ArrowRight,
+  FileSpreadsheet, ArrowRight, GraduationCap as Cap, BookOpen, Cpu, Brain,
 } from "lucide-react";
 import profile from "@/assets/work/profile.jpg";
 import postersA from "@/assets/work/posters-collection-1.jpg";
@@ -15,42 +15,49 @@ const services = [
   { icon: Palette, title: "Graphic Design", desc: "Eye-catching visuals for social, print and web." },
   { icon: Type, title: "Logo & Brand Identity", desc: "Memorable marks rooted in story and craft." },
   { icon: FileImage, title: "Poster & Marketing", desc: "Campaign creatives that convert attention to action." },
-  { icon: Code2, title: "Web Design", desc: "Responsive, type-led websites with personality." },
+  { icon: Brain, title: "IT & AI Instruction", desc: "Curriculum design and classroom training in modern tools." },
 ];
 
 const skills = [
   { icon: Palette, name: "Adobe Creative Suite", detail: "Photoshop · Illustrator · InDesign" },
-  { icon: Video, name: "Video Editing", detail: "Final Cut Pro · Adobe Premiere" },
-  { icon: Code2, name: "HTML / CSS", detail: "Web design & development" },
-  { icon: FileSpreadsheet, name: "Microsoft Excel", detail: "Data analysis & spreadsheets" },
-  { icon: Database, name: "Database", detail: "MySQL · SQL Server" },
-  { icon: Languages, name: "Languages", detail: "English · Arabic · Malayalam" },
+  { icon: Type, name: "Canva & Figma", detail: "Rapid concepts, social kits and UI mocks" },
+  { icon: Video, name: "Video Editing", detail: "Reels, promos and motion content" },
+  { icon: FileSpreadsheet, name: "Advanced MS Excel", detail: "Automations · MS Word · PowerPoint" },
+  { icon: Brain, name: "AI Tools & Curriculum", detail: "Curriculum design · E-learning · Classroom instruction" },
+  { icon: Cpu, name: "Hardware & IT", detail: "PC maintenance and troubleshooting" },
+  { icon: Languages, name: "Languages", detail: "English · Arabic · Urdu · Malayalam" },
 ];
 
 const experience = [
-  { role: "Digital Media Designer", org: "Malja'a Shareeath And Arts College", period: "Aug 2023 — Present",
-    desc: "Create digital content, manage social media, and design marketing materials." },
-  { role: "Freelance Graphic Designer", org: "ShafiGraphy", period: "Jan 2021 — Jul 2023",
-    desc: "Provide graphic design solutions, specialising in logo design and branding." },
-  { role: "IT Coordination Executive", org: "Board of Studies for IT Coordination", period: "Sep 2023 — Jan 2024",
-    desc: "Manage IT projects and provide technical support." },
+  { role: "Founder & Lead Graphic Designer", org: "Sha Creatives Design Studio", period: "Jan 2022 — Present",
+    desc: "Freelance design agency for social media branding and visual identity. Delivered 50+ marketing posters and 10+ custom logos for diverse clients." },
+  { role: "IT & AI Instructor · Digital Media Coordinator", org: "Malja'a Shareeath and Arts College", period: "Apr 2023 — Present",
+    desc: "Teach Adobe Creative Suite, MS Office, AI automation and PC hardware. Designed campus campaigns that grew engagement by ~70%." },
+  { role: "Board Member · IT Curriculum Developer", org: "Coordination of Jami'a Junior Colleges (CJC)", period: "Mar 2023 — Present",
+    desc: "Spearheading IT education modernization across 69 affiliated colleges. Authored a comprehensive industry-aligned IT syllabus." },
+  { role: "Online Tutor", org: "Zidnee Online Islamic School", period: "Dec 2025 — Present",
+    desc: "Online instruction blending Islamic studies with digital learning best practices." },
+  { role: "IT & Islamic Studies Teacher", org: "Kammu Soofi Memorial Islamic Complex", period: "2022 — 2023",
+    desc: "Taught IT and Islamic studies; selected to the Board of Studies based on teaching performance." },
+  { role: "Operations Officer & Data Analyst", org: "Bismi E Tickets", period: "Oct 2019 — Mar 2021",
+    desc: "Managed travel documentation during COVID-19. Built Excel automations that cut processing time by 30%." },
 ];
 
 const education = [
-  { title: "Diploma in Graphic Designing", org: "DigiNet Online School", period: "02/2025 — Present" },
-  { title: "Master's Degree", org: "Darul Huda Islamic University", period: "04/2021 — 03/2023" },
-  { title: "Bachelor of Arts", org: "University of Calicut", period: "04/2019 — 03/2022" },
+  { title: "Diploma in Graphic Design", org: "Diginet Online School", period: "Jan 2025 — Jun 2025" },
+  { title: "Master of Arts (MA)", org: "Darul Huda Islamic University", period: "Apr 2021 — Mar 2023" },
+  { title: "Bachelor of Arts (BA)", org: "University of Calicut", period: "Apr 2019 — Mar 2022" },
 ];
 
 const projects = [
-  { img: postersA, title: "Poster Designs · Vol. 1", category: "Print & Social", desc: "Admission, event and brand campaign posters in Malayalam, Arabic and English typography." },
+  { img: postersA, title: "Sha Creatives · Poster Vol. 1", category: "Social & Print", desc: "Admission, event and brand campaign posters in Malayalam, Arabic and English typography." },
   { img: logo1, title: "Malja'a Shareeath", category: "Logo · Branding", desc: "Crest mark blending Arabic calligraphy with an architectural arch motif, foiled on craft paper." },
-  { img: postersB, title: "Poster Designs · Vol. 2", category: "Campaign Creatives", desc: "Long-form campaign posters spanning workshops, product, hospitality and educational institutions." },
+  { img: postersB, title: "Sha Creatives · Poster Vol. 2", category: "Campaign Creatives", desc: "Long-form campaign posters spanning workshops, product, hospitality and educational institutions." },
   { img: logo2, title: "Monogram in Stone", category: "Logo · Brand Mark", desc: "Geometric monogram in pencil-pictogram form, embossed onto a textured green canvas." },
   { img: logo3, title: "Al Ishraq Identity", category: "Logo · Print", desc: "Bold Arabic display logotype paired with confident English wordmark for a student union." },
 ];
 
-const TICKER = ["Graphic Design", "Logo Design", "Brand Identity", "Poster Design", "Visual Storytelling", "Adobe Creative Suite"];
+const TICKER = ["Graphic Design", "Logo Design", "Brand Identity", "Sha Creatives", "AI & Curriculum", "Adobe Creative Suite"];
 
 const useReveal = () => {
   useEffect(() => {
