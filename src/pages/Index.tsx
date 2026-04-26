@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import {
   Palette, Code2, Type, Wand2, ArrowUpRight, Zap, Sparkles, Mail, Phone,
   Briefcase, GraduationCap, FileImage, Languages, Database, Video,
-  FileSpreadsheet, ArrowRight, GraduationCap as Cap, BookOpen, Cpu, Brain,
+  FileSpreadsheet, ArrowRight, Cpu, Brain,
 } from "lucide-react";
 import profile from "@/assets/work/profile.jpg";
 import postersA from "@/assets/work/posters-collection-1.jpg";
