@@ -125,8 +125,9 @@ const Index = () => {
               with a <span className="font-serif-display italic text-primary">story</span>.
             </h1>
             <p className="text-lg text-cream-soft max-w-xl leading-relaxed">
-              Mohammed Shafi Hudawi — crafting posters, logos and brand identities with the
-              Adobe Creative Suite. Bilingual eye for English, Arabic and Malayalam typography.
+              Mohammed Shafi TP — Founder of Sha Creatives, IT &amp; AI instructor, and curriculum
+              developer. 50+ branding projects delivered across posters, logos and social campaigns —
+              with a multilingual eye for English, Arabic, Urdu and Malayalam typography.
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="#work" className="inline-flex items-center gap-2 rounded-full bg-coral-grad text-primary-foreground px-7 py-3.5 font-medium hover:shadow-glow transition-all">
@@ -137,9 +138,9 @@ const Index = () => {
               </a>
             </div>
             <div className="flex items-center gap-8 pt-6 text-sm text-cream-soft">
-              <div><div className="font-display text-3xl text-cream">30+</div>Projects shipped</div>
-              <div><div className="font-display text-3xl text-cream">4+</div>Years designing</div>
-              <div><div className="font-display text-3xl text-cream">3</div>Languages crafted</div>
+              <div><div className="font-display text-3xl text-cream">50+</div>Branding projects</div>
+              <div><div className="font-display text-3xl text-cream">10+</div>Custom logos</div>
+              <div><div className="font-display text-3xl text-cream">69</div>Colleges impacted</div>
             </div>
           </div>
 
@@ -151,7 +152,7 @@ const Index = () => {
               </div>
               <div className="absolute -bottom-4 -left-4 bg-cream text-primary-foreground rounded-2xl px-4 py-3 shadow-card">
                 <div className="text-[10px] uppercase tracking-widest opacity-70">Designing since</div>
-                <div className="font-display text-xl font-bold">2021</div>
+                <div className="font-display text-xl font-bold">2022</div>
               </div>
               <div className="absolute -top-4 -right-2 bg-background-deep border border-primary/40 rounded-2xl px-4 py-3 shadow-card">
                 <div className="flex items-center gap-2 text-cream"><Palette className="w-4 h-4 text-primary" /><span className="font-display text-sm">Adobe CS</span></div>
@@ -259,9 +260,9 @@ const Index = () => {
             </div>
             <div className="md:col-span-7 grid sm:grid-cols-3 gap-5">
               {[
-                { icon: Wand2, title: "Proven craft", desc: "Streamlined workflows that improved design throughput by 50%." },
-                { icon: Zap, title: "Versatile", desc: "Adobe Creative Suite, video, web, and data — all in one operator." },
-                { icon: Sparkles, title: "30+ projects", desc: "Delivered with consistent quality and happy clients." },
+                { icon: Wand2, title: "Proven craft", desc: "50+ marketing posters and 10+ custom logos delivered through Sha Creatives." },
+                { icon: Zap, title: "Versatile", desc: "Graphic design, video, AI instruction and Excel automation — one operator." },
+                { icon: Sparkles, title: "Curriculum lead", desc: "Modernizing IT education across 69 affiliated colleges." },
               ].map((c) => (
                 <div key={c.title} className="bg-card-grad border border-border/50 rounded-2xl p-6">
                   <c.icon className="w-6 h-6 text-primary mb-4" />
@@ -348,7 +349,7 @@ const Index = () => {
                   on your next poster, logo or brand identity.
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  <a href="mailto:shafisayd2415@gmail.com"
+                <a href="mailto:mshafisyd@gmail.com"
                      className="inline-flex items-center gap-2 rounded-full bg-coral-grad text-primary-foreground px-6 py-3 font-medium hover:shadow-glow transition-all">
                     <Mail className="w-4 h-4" /> Email me
                   </a>
@@ -360,10 +361,10 @@ const Index = () => {
                 </div>
               </div>
               <div className="space-y-4">
-                <a href="mailto:shafisayd2415@gmail.com" className="group flex items-center justify-between p-5 rounded-2xl border border-border/50 hover:border-primary/40 transition-colors">
+                <a href="mailto:mshafisyd@gmail.com" className="group flex items-center justify-between p-5 rounded-2xl border border-border/50 hover:border-primary/40 transition-colors">
                   <div>
                     <p className="text-xs uppercase tracking-widest text-cream-soft">Email</p>
-                    <p className="font-display text-lg text-cream">shafisayd2415@gmail.com</p>
+                    <p className="font-display text-lg text-cream">mshafisyd@gmail.com</p>
                   </div>
                   <ArrowUpRight className="w-5 h-5 text-cream-soft group-hover:text-primary transition-colors" />
                 </a>
@@ -376,7 +377,7 @@ const Index = () => {
                 </a>
                 <div className="p-5 rounded-2xl border border-border/50">
                   <p className="text-xs uppercase tracking-widest text-cream-soft">Based in</p>
-                  <p className="font-display text-lg text-cream">Malappuram, Kerala · India</p>
+                  <p className="font-display text-lg text-cream">Areekode, Malappuram · Kerala, India</p>
                 </div>
               </div>
             </div>
@@ -387,7 +388,7 @@ const Index = () => {
       {/* FOOTER */}
       <footer className="border-t border-border/40 py-10">
         <div className="container flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-cream-soft">
-          <p>© {new Date().getFullYear()} Mohammed Shafi Hudawi · Graphic Designer</p>
+          <p>© {new Date().getFullYear()} Mohammed Shafi TP · Graphic Designer · Sha Creatives</p>
           <p className="font-serif-display italic">Crafted with care &amp; <span className="text-primary">✦</span> coral.</p>
         </div>
       </footer>
