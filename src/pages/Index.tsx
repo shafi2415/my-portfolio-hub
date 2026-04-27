@@ -292,12 +292,12 @@ const Index = () => {
 
           <div className="grid md:grid-cols-12 gap-4 md:gap-5">
             {projects.map((p, i) => {
-              const span =
-                i === 0 ? "md:col-span-8" :
-                i === 1 ? "md:col-span-4" :
-                i === 2 ? "md:col-span-5" :
-                i === 3 ? "md:col-span-3" :
-                          "md:col-span-4";
+              const spans = [
+                "md:col-span-7", "md:col-span-5",
+                "md:col-span-5", "md:col-span-7",
+                "md:col-span-4", "md:col-span-4", "md:col-span-4",
+              ];
+              const span = spans[i] ?? "md:col-span-4";
               return (
                 <article key={p.title} data-reveal style={{ animationDelay: `${i * 90}ms` }}
                   className={`${span} group relative overflow-hidden rounded-3xl glass hover:shadow-3d transition-all duration-500`}>
