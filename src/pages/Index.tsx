@@ -154,39 +154,41 @@ const Index = () => {
 
       {/* HERO — full-bg portrait, Apple-style overlay */}
       <section id="top" className="relative min-h-screen flex items-end overflow-hidden">
-        {/* Background photo */}
+        {/* Background photo — full-bleed, deeper mood */}
         <div className="absolute inset-0">
           <img
             src={heroPortrait}
             alt="Mohammed Shafi TP, graphic designer"
-            className="w-full h-full object-cover object-[center_20%] animate-hero-zoom"
+            className="w-full h-full object-cover object-[center_15%] animate-hero-zoom"
           />
-          {/* Cinematic vignette + bottom fade for legibility */}
-          <div className="absolute inset-0 bg-hero-fade" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background-deep/70 via-transparent to-background-deep/40" />
-          {/* Iridescent ambient glows */}
-          <div className="absolute -top-40 -right-40 w-[40rem] h-[40rem] rounded-full bg-warm-grad opacity-25 blur-[120px]" />
-          <div className="absolute -bottom-40 -left-40 w-[40rem] h-[40rem] rounded-full bg-cool-grad opacity-30 blur-[120px]" />
+          {/* Cinematic depth layers — subtle, photo-forward */}
+          <div className="absolute inset-0 bg-gradient-to-b from-background-deep/40 via-transparent to-background-deep/95" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background-deep/60 via-transparent to-transparent" />
+          {/* Iridescent ambient glows for color hint */}
+          <div className="absolute -top-40 -right-40 w-[36rem] h-[36rem] rounded-full bg-warm-grad opacity-20 blur-[140px] mix-blend-screen" />
+          <div className="absolute -bottom-40 -left-40 w-[36rem] h-[36rem] rounded-full bg-cool-grad opacity-25 blur-[140px] mix-blend-screen" />
+          {/* Tight vignette */}
+          <div className="absolute inset-0 shadow-[inset_0_0_220px_60px_hsl(220_22%_2%/0.95)]" />
         </div>
 
         {/* Content */}
-        <div className="relative container pb-20 pt-32 md:pb-28 md:pt-40 grid md:grid-cols-12 gap-8 items-end">
-          <div className="md:col-span-9 lg:col-span-8 space-y-6 animate-fade-up">
+        <div className="relative container pb-16 pt-28 md:pb-20 md:pt-36 grid md:grid-cols-12 gap-6 items-end">
+          <div className="md:col-span-9 lg:col-span-8 space-y-5 animate-fade-up">
             <div className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-[11px] uppercase tracking-[0.25em] text-cream-soft">
               <Sparkles className="w-3.5 h-3.5 text-primary" /> Sha Creatives · Portfolio 2025
             </div>
-            <h1 className="font-display text-5xl sm:text-7xl md:text-[5.5rem] lg:text-[7rem] font-bold leading-[0.95] tracking-tighter">
+            <h1 className="font-display text-5xl sm:text-7xl md:text-[5.5rem] lg:text-[6.5rem] font-bold leading-[0.92] tracking-tighter drop-shadow-[0_4px_30px_rgba(0,0,0,0.6)]">
               <span className="text-gradient block">Mohammed</span>
               <span className="text-iridescent block">Shafi TP</span>
             </h1>
-            <div className="font-display text-xl sm:text-2xl md:text-3xl text-cream font-medium min-h-[2.2em] sm:min-h-[1.6em]">
+            <div className="font-display text-xl sm:text-2xl md:text-3xl text-cream font-medium min-h-[2.2em] sm:min-h-[1.6em] drop-shadow-[0_2px_20px_rgba(0,0,0,0.7)]">
               I am a <span className="text-primary font-semibold caret">{role}</span>
             </div>
-            <p className="text-base md:text-lg text-cream-soft max-w-2xl leading-relaxed">
+            <p className="text-base md:text-lg text-cream-soft max-w-2xl leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
               Founder of Sha Creatives — designing brand identities, posters and AI-powered web
               experiences. Multilingual eye for English, Arabic, Urdu and Malayalam typography.
             </p>
-            <div className="flex flex-wrap gap-3 pt-2">
+            <div className="flex flex-wrap gap-3 pt-1">
               <a href="#work" className="group inline-flex items-center gap-2 rounded-full bg-cool-grad text-white px-7 py-3.5 font-medium hover:shadow-glow transition-all">
                 See the work <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </a>
