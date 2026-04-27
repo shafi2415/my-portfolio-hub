@@ -237,18 +237,18 @@ const Index = () => {
       </section>
 
       {/* Marquee — separator */}
-      <div className="overflow-hidden border-y border-white/5 py-5 bg-background-deep/60">
+      <div className="overflow-hidden border-y border-white/5 py-4 bg-background-deep/60">
         <div className="flex marquee whitespace-nowrap gap-10">
           {[...TICKER, ...TICKER, ...TICKER].map((t, i) => (
-            <span key={i} className="font-serif-display italic text-2xl md:text-4xl text-cream/70 flex items-center gap-10">
-              {t} <span className="text-primary">✦</span>
+            <span key={i} className="font-serif-display italic text-2xl md:text-4xl text-iridescent flex items-center gap-10">
+              {t} <span className="text-primary not-italic">✦</span>
             </span>
           ))}
         </div>
       </div>
 
       {/* SERVICES */}
-      <section id="services" className="py-20 md:py-28 relative">
+      <section id="services" className="py-16 md:py-20 relative">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] rounded-full bg-warm-grad opacity-[0.08] blur-[120px] pointer-events-none" />
         <div className="container relative">
           <div className="max-w-3xl mb-12" data-reveal>
