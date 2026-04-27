@@ -274,7 +274,7 @@ const Index = () => {
       </section>
 
       {/* WORK / PROJECTS */}
-      <section id="work" className="py-20 md:py-28 bg-background-deep/60 relative">
+      <section id="work" className="py-16 md:py-20 bg-background-deep/60 relative">
         <div className="container">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6" data-reveal>
             <div>
@@ -324,8 +324,8 @@ const Index = () => {
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="py-20 md:py-28">
-        <div className="container space-y-20">
+      <section id="about" className="py-16 md:py-20">
+        <div className="container space-y-14">
           {/* Why hire */}
           <div className="grid md:grid-cols-12 gap-8" data-reveal>
             <div className="md:col-span-5">
@@ -421,7 +421,7 @@ const Index = () => {
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="py-20 md:py-28 bg-background-deep/70">
+      <section id="contact" className="py-16 md:py-20 bg-background-deep/70">
         <div className="container">
           <div className="relative overflow-hidden rounded-[2rem] glass p-10 md:p-16" data-reveal>
             <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-warm-grad opacity-30 blur-3xl" />
