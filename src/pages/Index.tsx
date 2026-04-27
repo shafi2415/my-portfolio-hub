@@ -409,24 +409,23 @@ const Index = () => {
                   </a>
                   <a href="https://wa.me/918086429311?text=Hi%20Shafi%2C%20I%27d%20like%20to%20hire%20you%20for%20a%20design%20project."
                      target="_blank" rel="noreferrer"
-                     target="_blank" rel="noreferrer"
                      className="inline-flex items-center gap-2 rounded-full glass text-cream px-6 py-3 font-medium hover:bg-white/10 transition-colors">
                     <Phone className="w-4 h-4" /> WhatsApp
                   </a>
                 </div>
               </div>
               <div className="space-y-3">
-                <a href="mailto:mshafisyd@gmail.com" className="group flex items-center justify-between p-5 rounded-2xl glass hover:shadow-3d transition-shadow">
+                <a href="mailto:shafisayd2415@gmail.com" className="group flex items-center justify-between p-5 rounded-2xl glass hover:shadow-3d transition-shadow">
                   <div>
                     <p className="text-xs uppercase tracking-widest text-cream-soft font-mono">Email</p>
-                    <p className="font-display text-lg text-cream">mshafisyd@gmail.com</p>
+                    <p className="font-display text-lg text-cream">shafisayd2415@gmail.com</p>
                   </div>
                   <ArrowUpRight className="w-5 h-5 text-cream-soft group-hover:text-primary transition-colors" />
                 </a>
-                <a href="https://wa.me/917994724015" target="_blank" rel="noreferrer" className="group flex items-center justify-between p-5 rounded-2xl glass hover:shadow-3d transition-shadow">
+                <a href="https://wa.me/918086429311?text=Hi%20Shafi%2C%20I%27d%20like%20to%20hire%20you%20for%20a%20design%20project." target="_blank" rel="noreferrer" className="group flex items-center justify-between p-5 rounded-2xl glass hover:shadow-3d transition-shadow">
                   <div>
                     <p className="text-xs uppercase tracking-widest text-cream-soft font-mono">WhatsApp</p>
-                    <p className="font-display text-lg text-cream">(+91) 799 472 4015</p>
+                    <p className="font-display text-lg text-cream">(+91) 80864 29311</p>
                   </div>
                   <ArrowUpRight className="w-5 h-5 text-cream-soft group-hover:text-primary transition-colors" />
                 </a>
