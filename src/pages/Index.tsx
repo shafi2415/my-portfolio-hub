@@ -41,7 +41,7 @@ const experience = [
     desc: "Teach Adobe Creative Suite, MS Office, AI automation and PC hardware. Designed campus campaigns that grew engagement by ~70%." },
   { role: "Board Member · IT Curriculum Developer", org: "Coordination of Jami'a Junior Colleges (CJC)", period: "Mar 2023 — Present",
     desc: "Spearheading IT education modernization across 69 affiliated colleges. Authored a comprehensive industry-aligned IT syllabus." },
-  { role: "Online Tutor", org: "Zidnee Online Islamic School", period: "Dec 2025 — Present",
+  { role: "Online Tutor", org: "Zidnee Online Islamic School", period: "Dec 2026 — Present",
     desc: "Online instruction blending Islamic studies with digital learning best practices." },
   { role: "IT & Islamic Studies Teacher", org: "Kammu Soofi Memorial Islamic Complex", period: "2022 — 2023",
     desc: "Taught IT and Islamic studies; selected to the Board of Studies based on teaching performance." },
@@ -50,7 +50,7 @@ const experience = [
 ];
 
 const education = [
-  { title: "Diploma in Graphic Design", org: "Diginet Online School", period: "Jan 2025 — Jun 2025" },
+  { title: "Diploma in Graphic Design", org: "Diginet Online School", period: "Jan 2026 — Jun 2026" },
   { title: "Master of Arts (MA)", org: "Darul Huda Islamic University", period: "Apr 2021 — Mar 2023" },
   { title: "Bachelor of Arts (BA)", org: "University of Calicut", period: "Apr 2019 — Mar 2022" },
 ];
