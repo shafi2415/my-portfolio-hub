@@ -10,6 +10,8 @@ import postersB from "@/assets/work/posters-collection-2.jpg";
 import logo1 from "@/assets/work/logo-1.jpg";
 import logo2 from "@/assets/work/logo-2.jpg";
 import logo3 from "@/assets/work/logo-3.jpg";
+import daroraApp from "@/assets/work/darora-royal-app.png";
+import kinderjoyApp from "@/assets/work/kinderjoy-app.png";
 
 const ROLES = [
   "Graphic Designer",
@@ -56,6 +58,8 @@ const education = [
 ];
 
 const projects = [
+  { img: daroraApp, title: "Darora Royal Group · POS App", category: "AI Web App · UI/UX", desc: "Mobile-first dashboard for sales, inventory and ledger — deep violet glass UI with iridescent accents." },
+  { img: kinderjoyApp, title: "Kinderjoy · Zidnee Islamic School", category: "AI Web App · EdTech", desc: "Playful learning app for kids: tasks, quizzes and weekly Islamic challenges with vibrant gamified UI." },
   { img: postersA, title: "Sha Creatives · Poster Vol. 1", category: "Social & Print", desc: "Admission, event and brand campaign posters in Malayalam, Arabic and English typography." },
   { img: logo1, title: "Malja'a Shareeath", category: "Logo · Branding", desc: "Crest mark blending Arabic calligraphy with an architectural arch motif, foiled on craft paper." },
   { img: postersB, title: "Sha Creatives · Poster Vol. 2", category: "Campaign Creatives", desc: "Long-form campaign posters spanning workshops, product, hospitality and educational institutions." },
