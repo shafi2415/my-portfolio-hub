@@ -176,7 +176,7 @@ const Index = () => {
         <div className="relative container pb-16 pt-28 md:pb-20 md:pt-36 grid md:grid-cols-12 gap-6 items-end">
           <div className="md:col-span-9 lg:col-span-8 space-y-5 animate-fade-up">
             <div className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-[11px] uppercase tracking-[0.25em] text-cream-soft">
-              <Sparkles className="w-3.5 h-3.5 text-primary" /> Sha Creatives · Portfolio 2025
+              <Sparkles className="w-3.5 h-3.5 text-primary" /> Sha Creatives · Portfolio 2026
             </div>
             <h1 className="font-display text-5xl sm:text-7xl md:text-[5.5rem] lg:text-[6.5rem] font-bold leading-[0.92] tracking-tighter drop-shadow-[0_4px_30px_rgba(0,0,0,0.6)]">
               <span className="text-gradient block">Mohammed</span>
