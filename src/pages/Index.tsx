@@ -10,6 +10,8 @@ import postersB from "@/assets/work/posters-collection-2.jpg";
 import logo1 from "@/assets/work/logo-1.jpg";
 import logo2 from "@/assets/work/logo-2.jpg";
 import logo3 from "@/assets/work/logo-3.jpg";
+import daroraApp from "@/assets/work/darora-royal-app.png";
+import kinderjoyApp from "@/assets/work/kinderjoy-app.png";
 
 const ROLES = [
   "Graphic Designer",
@@ -56,6 +58,8 @@ const education = [
 ];
 
 const projects = [
+  { img: daroraApp, title: "Darora Royal Group · POS App", category: "AI Web App · UI/UX", desc: "Mobile-first dashboard for sales, inventory and ledger — deep violet glass UI with iridescent accents." },
+  { img: kinderjoyApp, title: "Kinderjoy · Zidnee Islamic School", category: "AI Web App · EdTech", desc: "Playful learning app for kids: tasks, quizzes and weekly Islamic challenges with vibrant gamified UI." },
   { img: postersA, title: "Sha Creatives · Poster Vol. 1", category: "Social & Print", desc: "Admission, event and brand campaign posters in Malayalam, Arabic and English typography." },
   { img: logo1, title: "Malja'a Shareeath", category: "Logo · Branding", desc: "Crest mark blending Arabic calligraphy with an architectural arch motif, foiled on craft paper." },
   { img: postersB, title: "Sha Creatives · Poster Vol. 2", category: "Campaign Creatives", desc: "Long-form campaign posters spanning workshops, product, hospitality and educational institutions." },
@@ -123,97 +127,128 @@ const Index = () => {
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-background">
-      {/* NAV — Apple-style glass */}
-      <header className="fixed top-0 inset-x-0 z-50 glass-strong">
-        <div className="container flex items-center justify-between py-3.5">
-          <a href="#top" className="flex items-center gap-2.5">
-            <span className="grid place-items-center w-8 h-8 rounded-lg bg-iridescent text-white font-display font-bold text-sm shadow-3d">S</span>
-            <span className="font-display font-semibold tracking-tight text-cream">Shafi<span className="text-primary">.</span></span>
-          </a>
-          <nav className="hidden md:flex items-center gap-9 text-sm text-cream-soft">
-            {nav.map((n) => (
-              <a key={n.id} href={`#${n.id}`} className="hover:text-cream transition-colors">{n.label}</a>
-            ))}
-          </nav>
-          <a href="https://wa.me/918086429311?text=Hi%20Shafi%2C%20I%27d%20like%20to%20hire%20you%20for%20a%20design%20project."
-             target="_blank" rel="noreferrer"
-             className="hidden md:inline-flex items-center gap-2 rounded-full bg-cool-grad text-white px-5 py-2 text-sm font-medium hover:shadow-glow transition-shadow">
-            Hire me <ArrowUpRight className="w-4 h-4" />
-          </a>
-          <button onClick={() => setOpen(!open)} className="md:hidden text-cream" aria-label="Menu">☰</button>
-        </div>
-        {open && (
-          <div className="md:hidden border-t border-white/5">
-            <div className="container py-4 flex flex-col gap-3">
+      {/* NAV — Liquid Glass (Apple WWDC '25 style) */}
+      <header className="fixed top-4 inset-x-0 z-50 px-4">
+        <div className="container max-w-6xl mx-auto">
+          <div className="liquid-glass rounded-full pl-3 pr-3 py-2 flex items-center justify-between">
+            <a href="#top" className="flex items-center gap-2.5 pl-2">
+              <span className="grid place-items-center w-9 h-9 rounded-full bg-iridescent text-white font-display font-bold text-sm shadow-glow">S</span>
+              <span className="font-display font-semibold tracking-tight text-cream text-[15px]">
+                My <span className="text-iridescent">Portfolio</span><span className="text-primary">.</span>
+              </span>
+            </a>
+            <nav className="hidden md:flex items-center gap-1 text-sm">
               {nav.map((n) => (
-                <a key={n.id} href={`#${n.id}`} onClick={() => setOpen(false)} className="text-cream-soft hover:text-cream">{n.label}</a>
+                <a key={n.id} href={`#${n.id}`}
+                   className="px-4 py-2 rounded-full text-cream-soft hover:text-cream hover:bg-white/10 transition-all">
+                  {n.label}
+                </a>
               ))}
-            </div>
+            </nav>
+            <a href="https://wa.me/918086429311?text=Hi%20Shafi%2C%20I%27d%20like%20to%20hire%20you%20for%20a%20design%20project."
+               target="_blank" rel="noreferrer"
+               className="hidden md:inline-flex items-center gap-2 rounded-full bg-cool-grad text-white px-5 py-2 text-sm font-medium hover:shadow-glow transition-shadow">
+              Hire me <ArrowUpRight className="w-4 h-4" />
+            </a>
+            <button onClick={() => setOpen(!open)} className="md:hidden text-cream px-3 py-2" aria-label="Menu">☰</button>
           </div>
-        )}
+          {open && (
+            <div className="md:hidden mt-2 liquid-glass rounded-2xl">
+              <div className="py-3 px-4 flex flex-col gap-1">
+                {nav.map((n) => (
+                  <a key={n.id} href={`#${n.id}`} onClick={() => setOpen(false)}
+                     className="text-cream-soft hover:text-cream px-3 py-2 rounded-lg hover:bg-white/10 transition-colors">
+                    {n.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
       </header>
 
-      {/* HERO — full-bg portrait, Apple-style overlay */}
-      <section id="top" className="relative min-h-screen flex items-end overflow-hidden">
-        {/* Background photo — full-bleed, deeper mood */}
-        <div className="absolute inset-0">
-          <img
-            src={heroPortrait}
-            alt="Mohammed Shafi TP, graphic designer"
-            className="w-full h-full object-cover object-[center_15%] animate-hero-zoom"
-          />
-          {/* Cinematic depth layers — subtle, photo-forward */}
-          <div className="absolute inset-0 bg-gradient-to-b from-background-deep/40 via-transparent to-background-deep/95" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background-deep/60 via-transparent to-transparent" />
-          {/* Iridescent ambient glows for color hint */}
-          <div className="absolute -top-40 -right-40 w-[36rem] h-[36rem] rounded-full bg-warm-grad opacity-20 blur-[140px] mix-blend-screen" />
-          <div className="absolute -bottom-40 -left-40 w-[36rem] h-[36rem] rounded-full bg-cool-grad opacity-25 blur-[140px] mix-blend-screen" />
-          {/* Tight vignette */}
-          <div className="absolute inset-0 shadow-[inset_0_0_220px_60px_hsl(220_22%_2%/0.95)]" />
+      {/* HERO — Editorial split: text left, framed portrait right */}
+      <section id="top" className="relative min-h-screen flex items-center overflow-hidden pt-28 pb-16 md:pt-32 md:pb-20">
+        {/* Ambient backdrop */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute -top-40 -right-32 w-[40rem] h-[40rem] rounded-full bg-warm-grad opacity-25 blur-[140px]" />
+          <div className="absolute -bottom-40 -left-32 w-[40rem] h-[40rem] rounded-full bg-cool-grad opacity-30 blur-[140px]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,hsl(var(--background-deep))_85%)]" />
         </div>
 
-        {/* Content */}
-        <div className="relative container pb-16 pt-28 md:pb-20 md:pt-36 grid md:grid-cols-12 gap-6 items-end">
-          <div className="md:col-span-9 lg:col-span-8 space-y-5 animate-fade-up">
-            <div className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-[11px] uppercase tracking-[0.25em] text-cream-soft">
+        <div className="relative container grid md:grid-cols-12 gap-10 lg:gap-8 items-center">
+          {/* Text — left */}
+          <div className="md:col-span-7 space-y-5 animate-fade-up">
+            <div className="inline-flex items-center gap-2 rounded-full liquid-glass px-4 py-1.5 text-[11px] uppercase tracking-[0.25em] text-cream-soft">
               <Sparkles className="w-3.5 h-3.5 text-primary" /> Sha Creatives · Portfolio 2026
             </div>
-            <h1 className="font-display text-5xl sm:text-7xl md:text-[5.5rem] lg:text-[6.5rem] font-bold leading-[0.92] tracking-tighter drop-shadow-[0_4px_30px_rgba(0,0,0,0.6)]">
+            <h1 className="font-display text-5xl sm:text-6xl md:text-[5rem] lg:text-[6rem] font-bold leading-[0.92] tracking-tighter">
               <span className="text-gradient block">Mohammed</span>
               <span className="text-iridescent block">Shafi TP</span>
             </h1>
-            <div className="font-display text-xl sm:text-2xl md:text-3xl text-cream font-medium min-h-[2.2em] sm:min-h-[1.6em] drop-shadow-[0_2px_20px_rgba(0,0,0,0.7)]">
-              I am a <span className="text-primary font-semibold caret">{role}</span>
+            <div className="font-display text-xl sm:text-2xl md:text-3xl text-cream font-medium min-h-[2.4em] sm:min-h-[1.8em]">
+              I am a <span className="text-iridescent font-semibold caret">{role}</span>
             </div>
-            <p className="text-base md:text-lg text-cream-soft max-w-2xl leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
-              Founder of Sha Creatives — designing brand identities, posters and AI-powered web
-              experiences. Multilingual eye for English, Arabic, Urdu and Malayalam typography.
+            <p className="text-base md:text-lg text-cream-soft max-w-xl leading-relaxed">
+              Founder of <span className="text-primary font-medium">Sha Creatives</span> — designing
+              brand identities, posters and AI-powered web experiences. Multilingual eye for English,
+              Arabic, Urdu and Malayalam typography.
             </p>
-            <div className="flex flex-wrap gap-3 pt-1">
+            <div className="flex flex-wrap gap-3 pt-2">
               <a href="#work" className="group inline-flex items-center gap-2 rounded-full bg-cool-grad text-white px-7 py-3.5 font-medium hover:shadow-glow transition-all">
                 See the work <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </a>
-              <a href="#contact" className="inline-flex items-center gap-2 rounded-full glass text-cream px-7 py-3.5 font-medium hover:bg-white/10 transition-colors">
+              <a href="#contact" className="inline-flex items-center gap-2 rounded-full liquid-glass text-cream px-7 py-3.5 font-medium hover:bg-white/10 transition-colors">
                 Start a project
               </a>
+            </div>
+          </div>
+
+          {/* Portrait — right, framed & smaller */}
+          <div className="md:col-span-5 relative animate-fade-up" style={{ animationDelay: "120ms" }}>
+            <div className="relative mx-auto max-w-[360px] md:max-w-[420px]">
+              {/* Iridescent halo */}
+              <div className="absolute -inset-6 rounded-[2.5rem] bg-iridescent opacity-40 blur-2xl animate-float-slow" />
+              {/* Frame */}
+              <div className="relative rounded-[2rem] overflow-hidden liquid-glass p-2 shadow-3d">
+                <div className="relative rounded-[1.6rem] overflow-hidden aspect-[4/5] bg-background-deep">
+                  <img
+                    src={heroPortrait}
+                    alt="Mohammed Shafi TP, graphic designer"
+                    className="w-full h-full object-cover object-[center_20%] animate-hero-zoom"
+                  />
+                  {/* color wash for cohesion */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-background-deep/70 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-grad-1/10 via-transparent to-grad-3/15 mix-blend-overlay" />
+                </div>
+              </div>
+              {/* Floating chip */}
+              <div className="absolute -bottom-4 -left-4 liquid-glass rounded-2xl px-4 py-2.5 flex items-center gap-2.5 shadow-3d">
+                <span className="w-2 h-2 rounded-full bg-primary shadow-glow animate-pulse" />
+                <span className="text-xs font-mono text-cream">Available for work</span>
+              </div>
+              <div className="absolute -top-3 -right-3 liquid-glass rounded-full px-3 py-1.5 flex items-center gap-1.5">
+                <Sparkles className="w-3 h-3 text-primary" />
+                <span className="text-[10px] uppercase tracking-widest font-mono text-cream-soft">Designer</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Marquee — separator */}
-      <div className="overflow-hidden border-y border-white/5 py-5 bg-background-deep/60">
+      <div className="overflow-hidden border-y border-white/5 py-4 bg-background-deep/60">
         <div className="flex marquee whitespace-nowrap gap-10">
           {[...TICKER, ...TICKER, ...TICKER].map((t, i) => (
-            <span key={i} className="font-serif-display italic text-2xl md:text-4xl text-cream/70 flex items-center gap-10">
-              {t} <span className="text-primary">✦</span>
+            <span key={i} className="font-serif-display italic text-2xl md:text-4xl text-iridescent flex items-center gap-10">
+              {t} <span className="text-primary not-italic">✦</span>
             </span>
           ))}
         </div>
       </div>
 
       {/* SERVICES */}
-      <section id="services" className="py-20 md:py-28 relative">
+      <section id="services" className="py-16 md:py-20 relative">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] rounded-full bg-warm-grad opacity-[0.08] blur-[120px] pointer-events-none" />
         <div className="container relative">
           <div className="max-w-3xl mb-12" data-reveal>
@@ -239,7 +274,7 @@ const Index = () => {
       </section>
 
       {/* WORK / PROJECTS */}
-      <section id="work" className="py-20 md:py-28 bg-background-deep/60 relative">
+      <section id="work" className="py-16 md:py-20 bg-background-deep/60 relative">
         <div className="container">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6" data-reveal>
             <div>
@@ -257,12 +292,12 @@ const Index = () => {
 
           <div className="grid md:grid-cols-12 gap-4 md:gap-5">
             {projects.map((p, i) => {
-              const span =
-                i === 0 ? "md:col-span-8" :
-                i === 1 ? "md:col-span-4" :
-                i === 2 ? "md:col-span-5" :
-                i === 3 ? "md:col-span-3" :
-                          "md:col-span-4";
+              const spans = [
+                "md:col-span-7", "md:col-span-5",
+                "md:col-span-5", "md:col-span-7",
+                "md:col-span-4", "md:col-span-4", "md:col-span-4",
+              ];
+              const span = spans[i] ?? "md:col-span-4";
               return (
                 <article key={p.title} data-reveal style={{ animationDelay: `${i * 90}ms` }}
                   className={`${span} group relative overflow-hidden rounded-3xl glass hover:shadow-3d transition-all duration-500`}>
@@ -289,8 +324,8 @@ const Index = () => {
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="py-20 md:py-28">
-        <div className="container space-y-20">
+      <section id="about" className="py-16 md:py-20">
+        <div className="container space-y-14">
           {/* Why hire */}
           <div className="grid md:grid-cols-12 gap-8" data-reveal>
             <div className="md:col-span-5">
@@ -386,7 +421,7 @@ const Index = () => {
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="py-20 md:py-28 bg-background-deep/70">
+      <section id="contact" className="py-16 md:py-20 bg-background-deep/70">
         <div className="container">
           <div className="relative overflow-hidden rounded-[2rem] glass p-10 md:p-16" data-reveal>
             <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-warm-grad opacity-30 blur-3xl" />
