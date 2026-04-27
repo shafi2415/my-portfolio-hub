@@ -135,7 +135,8 @@ const Index = () => {
               <a key={n.id} href={`#${n.id}`} className="hover:text-cream transition-colors">{n.label}</a>
             ))}
           </nav>
-          <a href="#contact"
+          <a href="https://wa.me/918086429311?text=Hi%20Shafi%2C%20I%27d%20like%20to%20hire%20you%20for%20a%20design%20project."
+             target="_blank" rel="noreferrer"
              className="hidden md:inline-flex items-center gap-2 rounded-full bg-cool-grad text-white px-5 py-2 text-sm font-medium hover:shadow-glow transition-shadow">
             Hire me <ArrowUpRight className="w-4 h-4" />
           </a>
@@ -402,11 +403,12 @@ const Index = () => {
                   on your next poster, logo, brand identity or AI web app.
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  <a href="mailto:mshafisyd@gmail.com"
+                  <a href="mailto:shafisayd2415@gmail.com"
                      className="inline-flex items-center gap-2 rounded-full bg-cool-grad text-white px-6 py-3 font-medium hover:shadow-glow transition-all">
                     <Mail className="w-4 h-4" /> Email me
                   </a>
-                  <a href="https://wa.me/917994724015"
+                  <a href="https://wa.me/918086429311?text=Hi%20Shafi%2C%20I%27d%20like%20to%20hire%20you%20for%20a%20design%20project."
+                     target="_blank" rel="noreferrer"
                      target="_blank" rel="noreferrer"
                      className="inline-flex items-center gap-2 rounded-full glass text-cream px-6 py-3 font-medium hover:bg-white/10 transition-colors">
                     <Phone className="w-4 h-4" /> WhatsApp
