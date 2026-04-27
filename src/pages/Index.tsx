@@ -1,21 +1,28 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
-  Palette, Type, Wand2, ArrowUpRight, Zap, Sparkles, Mail, Phone,
+  Palette, Type, Wand2, ArrowUpRight, Sparkles, Mail, Phone,
   Briefcase, GraduationCap, FileImage, Languages, Video,
-  FileSpreadsheet, ArrowRight, Cpu, Brain,
+  FileSpreadsheet, ArrowRight, Cpu, Brain, Code2,
 } from "lucide-react";
-import profile from "@/assets/work/profile.jpg";
+import heroPortrait from "@/assets/hero-portrait.png";
 import postersA from "@/assets/work/posters-collection-1.jpg";
 import postersB from "@/assets/work/posters-collection-2.jpg";
 import logo1 from "@/assets/work/logo-1.jpg";
 import logo2 from "@/assets/work/logo-2.jpg";
 import logo3 from "@/assets/work/logo-3.jpg";
 
+const ROLES = [
+  "Graphic Designer",
+  "Brand Identity Designer",
+  "AI Web App Developer",
+  "Excel Automation Specialist",
+];
+
 const services = [
   { icon: Palette, title: "Graphic Design", desc: "Eye-catching visuals for social, print and web." },
-  { icon: Type, title: "Logo & Brand Identity", desc: "Memorable marks rooted in story and craft." },
-  { icon: FileImage, title: "Poster & Marketing", desc: "Campaign creatives that convert attention to action." },
-  { icon: Brain, title: "IT & AI Instruction", desc: "Curriculum design and classroom training in modern tools." },
+  { icon: Type, title: "Brand Identity", desc: "Memorable marks rooted in story and craft." },
+  { icon: Code2, title: "AI Web Apps", desc: "Modern web apps powered by AI workflows and automation." },
+  { icon: FileSpreadsheet, title: "Excel Automation", desc: "Dashboards, formulas and macros that save hours." },
 ];
 
 const skills = [
@@ -25,7 +32,6 @@ const skills = [
   { icon: FileSpreadsheet, name: "Advanced MS Excel", detail: "Automations · MS Word · PowerPoint" },
   { icon: Brain, name: "AI Tools & Curriculum", detail: "Curriculum design · E-learning · Classroom instruction" },
   { icon: Cpu, name: "Hardware & IT", detail: "PC maintenance and troubleshooting" },
-  { icon: Languages, name: "Languages", detail: "English · Arabic · Urdu · Malayalam" },
 ];
 
 const experience = [
@@ -57,7 +63,7 @@ const projects = [
   { img: logo3, title: "Al Ishraq Identity", category: "Logo · Print", desc: "Bold Arabic display logotype paired with confident English wordmark for a student union." },
 ];
 
-const TICKER = ["Graphic Design", "Logo Design", "Brand Identity", "Sha Creatives", "AI & Curriculum", "Adobe Creative Suite"];
+const TICKER = ["Graphic Design", "Brand Identity", "AI Web Apps", "Excel Automation", "Sha Creatives", "Adobe Creative Suite"];
 
 const useReveal = () => {
   useEffect(() => {
@@ -71,8 +77,42 @@ const useReveal = () => {
   }, []);
 };
 
+/** Typewriter that cycles ROLES with type/erase rhythm */
+const useTypewriter = (words: string[], typeMs = 70, eraseMs = 35, holdMs = 1400) => {
+  const [text, setText] = useState("");
+  const idx = useRef(0);
+  const phase = useRef<"type" | "hold" | "erase">("type");
+  const pos = useRef(0);
+
+  useEffect(() => {
+    let timer: number;
+    const tick = () => {
+      const word = words[idx.current];
+      if (phase.current === "type") {
+        pos.current += 1;
+        setText(word.slice(0, pos.current));
+        if (pos.current >= word.length) { phase.current = "hold"; timer = window.setTimeout(tick, holdMs); return; }
+        timer = window.setTimeout(tick, typeMs);
+      } else if (phase.current === "hold") {
+        phase.current = "erase";
+        timer = window.setTimeout(tick, eraseMs);
+      } else {
+        pos.current -= 1;
+        setText(word.slice(0, pos.current));
+        if (pos.current <= 0) { phase.current = "type"; idx.current = (idx.current + 1) % words.length; }
+        timer = window.setTimeout(tick, eraseMs);
+      }
+    };
+    timer = window.setTimeout(tick, typeMs);
+    return () => window.clearTimeout(timer);
+  }, [words, typeMs, eraseMs, holdMs]);
+
+  return text;
+};
+
 const Index = () => {
   useReveal();
+  const role = useTypewriter(ROLES);
   const [open, setOpen] = useState(false);
   const nav = [
     { id: "work", label: "Work" },
@@ -82,114 +122,111 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen overflow-x-hidden">
-      {/* NAV */}
-      <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-background/60 border-b border-border/40">
-        <div className="container flex items-center justify-between py-4">
-          <a href="#top" className="flex items-center gap-2">
-            <span className="grid place-items-center w-9 h-9 rounded-lg bg-coral-grad text-primary-foreground font-display font-bold">S</span>
+    <div className="min-h-screen overflow-x-hidden bg-background">
+      {/* NAV — Apple-style glass */}
+      <header className="fixed top-0 inset-x-0 z-50 glass-strong">
+        <div className="container flex items-center justify-between py-3.5">
+          <a href="#top" className="flex items-center gap-2.5">
+            <span className="grid place-items-center w-8 h-8 rounded-lg bg-iridescent text-white font-display font-bold text-sm shadow-3d">S</span>
             <span className="font-display font-semibold tracking-tight text-cream">Shafi<span className="text-primary">.</span></span>
           </a>
-          <nav className="hidden md:flex items-center gap-8 text-sm text-cream-soft">
+          <nav className="hidden md:flex items-center gap-9 text-sm text-cream-soft">
             {nav.map((n) => (
-              <a key={n.id} href={`#${n.id}`} className="hover:text-primary transition-colors">{n.label}</a>
+              <a key={n.id} href={`#${n.id}`} className="hover:text-cream transition-colors">{n.label}</a>
             ))}
           </nav>
           <a href="#contact"
-             className="hidden md:inline-flex items-center gap-2 rounded-full bg-coral-grad text-primary-foreground px-5 py-2 text-sm font-medium hover:shadow-glow transition-shadow">
+             className="hidden md:inline-flex items-center gap-2 rounded-full bg-cool-grad text-white px-5 py-2 text-sm font-medium hover:shadow-glow transition-shadow">
             Hire me <ArrowUpRight className="w-4 h-4" />
           </a>
           <button onClick={() => setOpen(!open)} className="md:hidden text-cream" aria-label="Menu">☰</button>
         </div>
         {open && (
-          <div className="md:hidden border-t border-border/40 bg-background/95">
+          <div className="md:hidden border-t border-white/5">
             <div className="container py-4 flex flex-col gap-3">
               {nav.map((n) => (
-                <a key={n.id} href={`#${n.id}`} onClick={() => setOpen(false)} className="text-cream-soft hover:text-primary">{n.label}</a>
+                <a key={n.id} href={`#${n.id}`} onClick={() => setOpen(false)} className="text-cream-soft hover:text-cream">{n.label}</a>
               ))}
             </div>
           </div>
         )}
       </header>
 
-      {/* HERO */}
-      <section id="top" className="relative pt-36 pb-24 md:pt-44 md:pb-32">
-        <div className="container grid md:grid-cols-12 gap-12 items-center">
-          <div className="md:col-span-7 space-y-7" data-reveal>
-            <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background-elev/60 px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-cream-soft">
-              <Sparkles className="w-3.5 h-3.5 text-primary" /> Portfolio · 2025
+      {/* HERO — full-bg portrait, Apple-style overlay */}
+      <section id="top" className="relative min-h-screen flex items-end overflow-hidden">
+        {/* Background photo */}
+        <div className="absolute inset-0">
+          <img
+            src={heroPortrait}
+            alt="Mohammed Shafi TP, graphic designer"
+            className="w-full h-full object-cover object-[center_20%] animate-hero-zoom"
+          />
+          {/* Cinematic vignette + bottom fade for legibility */}
+          <div className="absolute inset-0 bg-hero-fade" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background-deep/70 via-transparent to-background-deep/40" />
+          {/* Iridescent ambient glows */}
+          <div className="absolute -top-40 -right-40 w-[40rem] h-[40rem] rounded-full bg-warm-grad opacity-25 blur-[120px]" />
+          <div className="absolute -bottom-40 -left-40 w-[40rem] h-[40rem] rounded-full bg-cool-grad opacity-30 blur-[120px]" />
+        </div>
+
+        {/* Content */}
+        <div className="relative container pb-20 pt-32 md:pb-28 md:pt-40 grid md:grid-cols-12 gap-8 items-end">
+          <div className="md:col-span-9 lg:col-span-8 space-y-6 animate-fade-up">
+            <div className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-[11px] uppercase tracking-[0.25em] text-cream-soft">
+              <Sparkles className="w-3.5 h-3.5 text-primary" /> Sha Creatives · Portfolio 2025
             </div>
-            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[0.95] text-cream">
-              I'm a <span className="font-serif-display italic text-primary">graphic</span><br />
-              designer<br />
-              with a <span className="font-serif-display italic text-primary">story</span>.
+            <h1 className="font-display text-5xl sm:text-7xl md:text-[5.5rem] lg:text-[7rem] font-bold leading-[0.95] tracking-tighter">
+              <span className="text-gradient block">Mohammed</span>
+              <span className="text-iridescent block">Shafi TP</span>
             </h1>
-            <p className="text-lg text-cream-soft max-w-xl leading-relaxed">
-              Mohammed Shafi TP — Founder of Sha Creatives, IT &amp; AI instructor, and curriculum
-              developer. 50+ branding projects delivered across posters, logos and social campaigns —
-              with a multilingual eye for English, Arabic, Urdu and Malayalam typography.
+            <div className="font-display text-xl sm:text-2xl md:text-3xl text-cream font-medium min-h-[2.2em] sm:min-h-[1.6em]">
+              I am a <span className="text-primary font-semibold caret">{role}</span>
+            </div>
+            <p className="text-base md:text-lg text-cream-soft max-w-2xl leading-relaxed">
+              Founder of Sha Creatives — designing brand identities, posters and AI-powered web
+              experiences. Multilingual eye for English, Arabic, Urdu and Malayalam typography.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <a href="#work" className="inline-flex items-center gap-2 rounded-full bg-coral-grad text-primary-foreground px-7 py-3.5 font-medium hover:shadow-glow transition-all">
-                See the work <ArrowRight className="w-4 h-4" />
+            <div className="flex flex-wrap gap-3 pt-2">
+              <a href="#work" className="group inline-flex items-center gap-2 rounded-full bg-cool-grad text-white px-7 py-3.5 font-medium hover:shadow-glow transition-all">
+                See the work <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </a>
-              <a href="#contact" className="inline-flex items-center gap-2 rounded-full border border-cream/30 text-cream px-7 py-3.5 font-medium hover:bg-cream/5 transition-colors">
+              <a href="#contact" className="inline-flex items-center gap-2 rounded-full glass text-cream px-7 py-3.5 font-medium hover:bg-white/10 transition-colors">
                 Start a project
               </a>
             </div>
-            <div className="flex items-center gap-8 pt-6 text-sm text-cream-soft">
-              <div><div className="font-display text-3xl text-cream">50+</div>Branding projects</div>
-              <div><div className="font-display text-3xl text-cream">10+</div>Custom logos</div>
-              <div><div className="font-display text-3xl text-cream">69</div>Colleges impacted</div>
-            </div>
-          </div>
-
-          <div className="md:col-span-5 relative" data-reveal>
-            <div className="relative animate-float-slow">
-              <div className="absolute -inset-6 rounded-full bg-coral-grad opacity-20 blur-3xl" />
-              <div className="relative aspect-square rounded-full overflow-hidden border-2 border-primary/40 shadow-card">
-                <img src={profile} alt="Mohammed Shafi Hudawi, graphic designer" className="w-full h-full object-cover" />
-              </div>
-              <div className="absolute -bottom-4 -left-4 bg-cream text-primary-foreground rounded-2xl px-4 py-3 shadow-card">
-                <div className="text-[10px] uppercase tracking-widest opacity-70">Designing since</div>
-                <div className="font-display text-xl font-bold">2022</div>
-              </div>
-              <div className="absolute -top-4 -right-2 bg-background-deep border border-primary/40 rounded-2xl px-4 py-3 shadow-card">
-                <div className="flex items-center gap-2 text-cream"><Palette className="w-4 h-4 text-primary" /><span className="font-display text-sm">Adobe CS</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Marquee */}
-        <div className="mt-24 overflow-hidden border-y border-border/40 py-6 bg-background-deep/40">
-          <div className="flex marquee whitespace-nowrap gap-12">
-            {[...TICKER, ...TICKER, ...TICKER].map((t, i) => (
-              <span key={i} className="font-serif-display italic text-3xl md:text-5xl text-cream/80 flex items-center gap-12">
-                {t} <span className="text-primary">✦</span>
-              </span>
-            ))}
           </div>
         </div>
       </section>
 
+      {/* Marquee — separator */}
+      <div className="overflow-hidden border-y border-white/5 py-5 bg-background-deep/60">
+        <div className="flex marquee whitespace-nowrap gap-10">
+          {[...TICKER, ...TICKER, ...TICKER].map((t, i) => (
+            <span key={i} className="font-serif-display italic text-2xl md:text-4xl text-cream/70 flex items-center gap-10">
+              {t} <span className="text-primary">✦</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
       {/* SERVICES */}
-      <section id="services" className="py-24 md:py-32">
-        <div className="container">
-          <div className="max-w-3xl mb-16" data-reveal>
-            <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4">What I do</p>
-            <h2 className="font-display text-4xl md:text-6xl font-bold text-cream leading-tight">
-              Design that <span className="font-serif-display italic text-primary">speaks</span> before it sells.
+      <section id="services" className="py-20 md:py-28 relative">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] rounded-full bg-warm-grad opacity-[0.08] blur-[120px] pointer-events-none" />
+        <div className="container relative">
+          <div className="max-w-3xl mb-12" data-reveal>
+            <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4 font-mono">What I do</p>
+            <h2 className="font-display text-4xl md:text-6xl font-bold leading-[1.05]">
+              <span className="text-gradient">Design that</span> <span className="text-iridescent">speaks</span> <span className="text-gradient">before it sells.</span>
             </h2>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {services.map((s, i) => (
               <div key={s.title} data-reveal style={{ animationDelay: `${i * 80}ms` }}
-                   className="group relative bg-card-grad border border-border/50 rounded-3xl p-7 hover:border-primary/50 transition-all">
-                <div className="w-12 h-12 rounded-xl bg-primary/15 grid place-items-center mb-6 group-hover:bg-coral-grad transition-all">
-                  <s.icon className="w-6 h-6 text-primary group-hover:text-primary-foreground" />
+                   className="group relative glass rounded-3xl p-7 hover:shadow-3d hover:-translate-y-1 transition-all duration-500">
+                <div className="w-12 h-12 rounded-2xl bg-iridescent grid place-items-center mb-6 shadow-glow opacity-90 group-hover:opacity-100 transition-opacity">
+                  <s.icon className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="font-display text-xl font-semibold text-cream mb-2">{s.title}</h3>
+                <h3 className="font-display text-xl font-semibold text-cream mb-2 tracking-tight">{s.title}</h3>
                 <p className="text-sm text-cream-soft leading-relaxed">{s.desc}</p>
                 <ArrowUpRight className="absolute top-6 right-6 w-5 h-5 text-cream/30 group-hover:text-primary transition-colors" />
               </div>
@@ -199,22 +236,23 @@ const Index = () => {
       </section>
 
       {/* WORK / PROJECTS */}
-      <section id="work" className="py-24 md:py-32 bg-background-deep/40">
+      <section id="work" className="py-20 md:py-28 bg-background-deep/60 relative">
         <div className="container">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6" data-reveal>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6" data-reveal>
             <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4">Selected work</p>
-              <h2 className="font-display text-4xl md:text-6xl font-bold text-cream max-w-2xl leading-tight">
-                Posters, logos &amp; <span className="font-serif-display italic text-primary">brand identity</span>.
+              <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4 font-mono">Selected work</p>
+              <h2 className="font-display text-4xl md:text-6xl font-bold max-w-2xl leading-[1.05]">
+                <span className="text-gradient">Posters, logos &amp;</span><br />
+                <span className="text-iridescent">brand identity.</span>
               </h2>
             </div>
             <p className="text-cream-soft md:text-right max-w-sm">
-              A glimpse into recent campaigns, identities and editorial pieces — from
-              admission posters to typographic brand marks.
+              Recent campaigns, identities and editorial pieces — from admission posters to
+              typographic brand marks.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-12 gap-5 md:gap-6">
+          <div className="grid md:grid-cols-12 gap-4 md:gap-5">
             {projects.map((p, i) => {
               const span =
                 i === 0 ? "md:col-span-8" :
@@ -224,7 +262,7 @@ const Index = () => {
                           "md:col-span-4";
               return (
                 <article key={p.title} data-reveal style={{ animationDelay: `${i * 90}ms` }}
-                  className={`${span} group relative overflow-hidden rounded-3xl bg-card border border-border/50 hover:border-primary/40 transition-all`}>
+                  className={`${span} group relative overflow-hidden rounded-3xl glass hover:shadow-3d transition-all duration-500`}>
                   <div className="aspect-[4/3] overflow-hidden bg-background-deep">
                     <img src={p.img} alt={p.title}
                          loading="lazy"
@@ -232,12 +270,12 @@ const Index = () => {
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-background-deep/95 via-background-deep/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    <p className="text-xs uppercase tracking-widest text-primary mb-2">{p.category}</p>
+                    <p className="text-xs uppercase tracking-widest text-primary mb-2 font-mono">{p.category}</p>
                     <h3 className="font-display text-xl md:text-2xl font-bold text-cream mb-2">{p.title}</h3>
                     <p className="text-sm text-cream-soft">{p.desc}</p>
                   </div>
                   <div className="p-5 group-hover:opacity-0 transition-opacity">
-                    <p className="text-[10px] uppercase tracking-widest text-primary mb-1">{p.category}</p>
+                    <p className="text-[10px] uppercase tracking-widest text-primary mb-1 font-mono">{p.category}</p>
                     <h3 className="font-display text-lg font-semibold text-cream">{p.title}</h3>
                   </div>
                 </article>
@@ -247,25 +285,27 @@ const Index = () => {
         </div>
       </section>
 
-      {/* WHY HIRE / SKILLS / EXPERIENCE / EDUCATION */}
-      <section id="about" className="py-24 md:py-32">
-        <div className="container space-y-24">
+      {/* ABOUT */}
+      <section id="about" className="py-20 md:py-28">
+        <div className="container space-y-20">
           {/* Why hire */}
-          <div className="grid md:grid-cols-12 gap-10" data-reveal>
+          <div className="grid md:grid-cols-12 gap-8" data-reveal>
             <div className="md:col-span-5">
-              <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4">Why hire me</p>
-              <h2 className="font-display text-4xl md:text-5xl font-bold text-cream leading-tight">
-                A designer's eye, an <span className="font-serif-display italic text-primary">operator's</span> hands.
+              <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4 font-mono">Why hire me</p>
+              <h2 className="font-display text-4xl md:text-5xl font-bold leading-[1.05]">
+                <span className="text-gradient">A designer's eye,</span> <span className="text-iridescent">an operator's hands.</span>
               </h2>
             </div>
-            <div className="md:col-span-7 grid sm:grid-cols-3 gap-5">
+            <div className="md:col-span-7 grid sm:grid-cols-3 gap-4">
               {[
                 { icon: Wand2, title: "Proven craft", desc: "50+ marketing posters and 10+ custom logos delivered through Sha Creatives." },
-                { icon: Zap, title: "Versatile", desc: "Graphic design, video, AI instruction and Excel automation — one operator." },
+                { icon: Code2, title: "AI + design", desc: "Web apps, automations and AI workflows alongside full visual identities." },
                 { icon: Sparkles, title: "Curriculum lead", desc: "Modernizing IT education across 69 affiliated colleges." },
               ].map((c) => (
-                <div key={c.title} className="bg-card-grad border border-border/50 rounded-2xl p-6">
-                  <c.icon className="w-6 h-6 text-primary mb-4" />
+                <div key={c.title} className="glass rounded-2xl p-6">
+                  <div className="w-10 h-10 rounded-xl bg-iridescent grid place-items-center mb-4 shadow-glow opacity-90">
+                    <c.icon className="w-5 h-5 text-white" />
+                  </div>
                   <h3 className="font-display text-lg font-semibold text-cream mb-2">{c.title}</h3>
                   <p className="text-sm text-cream-soft leading-relaxed">{c.desc}</p>
                 </div>
@@ -275,15 +315,15 @@ const Index = () => {
 
           {/* Skills */}
           <div data-reveal>
-            <div className="flex items-end justify-between mb-10 gap-6">
-              <h3 className="font-display text-3xl md:text-4xl font-bold text-cream">My toolkit.</h3>
+            <div className="flex items-end justify-between mb-8 gap-6">
+              <h3 className="font-display text-3xl md:text-4xl font-bold text-gradient">My toolkit.</h3>
               <p className="text-cream-soft text-sm hidden md:block">Versatile skills in design, technology and languages.</p>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {skills.map((s) => (
-                <div key={s.name} className="flex items-start gap-4 rounded-2xl border border-border/50 bg-background-elev/40 p-5 hover:border-primary/40 transition-colors">
-                  <div className="w-11 h-11 shrink-0 rounded-xl bg-primary/15 grid place-items-center">
-                    <s.icon className="w-5 h-5 text-primary" />
+                <div key={s.name} className="flex items-start gap-4 rounded-2xl glass p-5 hover:shadow-3d transition-shadow">
+                  <div className="w-11 h-11 shrink-0 rounded-xl bg-iridescent grid place-items-center shadow-glow opacity-90">
+                    <s.icon className="w-5 h-5 text-white" />
                   </div>
                   <div>
                     <h4 className="font-display font-semibold text-cream">{s.name}</h4>
@@ -291,21 +331,30 @@ const Index = () => {
                   </div>
                 </div>
               ))}
+              <div className="flex items-start gap-4 rounded-2xl glass p-5">
+                <div className="w-11 h-11 shrink-0 rounded-xl bg-iridescent grid place-items-center shadow-glow opacity-90">
+                  <Languages className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h4 className="font-display font-semibold text-cream">Languages</h4>
+                  <p className="text-sm text-cream-soft">English · Arabic · Urdu · Malayalam</p>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Experience + Education */}
-          <div className="grid md:grid-cols-2 gap-10">
+          <div className="grid md:grid-cols-2 gap-8">
             <div data-reveal>
-              <div className="flex items-center gap-3 mb-8">
+              <div className="flex items-center gap-3 mb-6">
                 <Briefcase className="w-5 h-5 text-primary" />
-                <h3 className="font-display text-3xl font-bold text-cream">Experience</h3>
+                <h3 className="font-display text-3xl font-bold text-gradient">Experience</h3>
               </div>
-              <ol className="relative border-l border-border/60 ml-3 space-y-8">
+              <ol className="relative border-l border-white/10 ml-3 space-y-7">
                 {experience.map((e) => (
                   <li key={e.role} className="pl-6 relative">
-                    <span className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-coral-grad" />
-                    <p className="text-xs uppercase tracking-widest text-primary">{e.period}</p>
+                    <span className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-iridescent shadow-glow" />
+                    <p className="text-xs uppercase tracking-widest text-primary font-mono">{e.period}</p>
                     <h4 className="font-display text-lg font-semibold text-cream mt-1">{e.role}</h4>
                     <p className="text-sm text-cream-soft">{e.org}</p>
                     <p className="text-sm text-cream-soft/80 mt-2 leading-relaxed">{e.desc}</p>
@@ -314,15 +363,15 @@ const Index = () => {
               </ol>
             </div>
             <div data-reveal>
-              <div className="flex items-center gap-3 mb-8">
+              <div className="flex items-center gap-3 mb-6">
                 <GraduationCap className="w-5 h-5 text-primary" />
-                <h3 className="font-display text-3xl font-bold text-cream">Education</h3>
+                <h3 className="font-display text-3xl font-bold text-gradient">Education</h3>
               </div>
-              <ol className="relative border-l border-border/60 ml-3 space-y-8">
+              <ol className="relative border-l border-white/10 ml-3 space-y-7">
                 {education.map((e) => (
                   <li key={e.title} className="pl-6 relative">
-                    <span className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-coral-grad" />
-                    <p className="text-xs uppercase tracking-widest text-primary">{e.period}</p>
+                    <span className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-iridescent shadow-glow" />
+                    <p className="text-xs uppercase tracking-widest text-primary font-mono">{e.period}</p>
                     <h4 className="font-display text-lg font-semibold text-cream mt-1">{e.title}</h4>
                     <p className="text-sm text-cream-soft">{e.org}</p>
                   </li>
@@ -334,49 +383,51 @@ const Index = () => {
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="py-24 md:py-32 bg-background-deep/60">
+      <section id="contact" className="py-20 md:py-28 bg-background-deep/70">
         <div className="container">
-          <div className="relative overflow-hidden rounded-[2rem] bg-card-grad border border-border/50 p-10 md:p-16" data-reveal>
-            <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-coral-grad opacity-25 blur-3xl" />
-            <div className="relative grid md:grid-cols-2 gap-12 items-center">
+          <div className="relative overflow-hidden rounded-[2rem] glass p-10 md:p-16" data-reveal>
+            <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-warm-grad opacity-30 blur-3xl" />
+            <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-cool-grad opacity-25 blur-3xl" />
+            <div className="relative grid md:grid-cols-2 gap-10 items-center">
               <div>
-                <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4">Let's work together</p>
-                <h2 className="font-display text-4xl md:text-6xl font-bold text-cream leading-tight mb-6">
-                  Have a <span className="font-serif-display italic text-primary">brief</span>?<br />Let's make it sing.
+                <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4 font-mono">Let's work together</p>
+                <h2 className="font-display text-4xl md:text-6xl font-bold leading-[1.05] mb-5">
+                  <span className="text-gradient">Have a brief?</span><br />
+                  <span className="text-iridescent">Let's make it sing.</span>
                 </h2>
-                <p className="text-cream-soft text-lg mb-8 max-w-md">
+                <p className="text-cream-soft text-lg mb-7 max-w-md">
                   Bringing creativity and efficiency to every project. Ready to collaborate
-                  on your next poster, logo or brand identity.
+                  on your next poster, logo, brand identity or AI web app.
                 </p>
                 <div className="flex flex-wrap gap-3">
-                <a href="mailto:mshafisyd@gmail.com"
-                     className="inline-flex items-center gap-2 rounded-full bg-coral-grad text-primary-foreground px-6 py-3 font-medium hover:shadow-glow transition-all">
+                  <a href="mailto:mshafisyd@gmail.com"
+                     className="inline-flex items-center gap-2 rounded-full bg-cool-grad text-white px-6 py-3 font-medium hover:shadow-glow transition-all">
                     <Mail className="w-4 h-4" /> Email me
                   </a>
                   <a href="https://wa.me/917994724015"
                      target="_blank" rel="noreferrer"
-                     className="inline-flex items-center gap-2 rounded-full border border-cream/30 text-cream px-6 py-3 font-medium hover:bg-cream/5 transition-colors">
+                     className="inline-flex items-center gap-2 rounded-full glass text-cream px-6 py-3 font-medium hover:bg-white/10 transition-colors">
                     <Phone className="w-4 h-4" /> WhatsApp
                   </a>
                 </div>
               </div>
-              <div className="space-y-4">
-                <a href="mailto:mshafisyd@gmail.com" className="group flex items-center justify-between p-5 rounded-2xl border border-border/50 hover:border-primary/40 transition-colors">
+              <div className="space-y-3">
+                <a href="mailto:mshafisyd@gmail.com" className="group flex items-center justify-between p-5 rounded-2xl glass hover:shadow-3d transition-shadow">
                   <div>
-                    <p className="text-xs uppercase tracking-widest text-cream-soft">Email</p>
+                    <p className="text-xs uppercase tracking-widest text-cream-soft font-mono">Email</p>
                     <p className="font-display text-lg text-cream">mshafisyd@gmail.com</p>
                   </div>
                   <ArrowUpRight className="w-5 h-5 text-cream-soft group-hover:text-primary transition-colors" />
                 </a>
-                <a href="https://wa.me/917994724015" target="_blank" rel="noreferrer" className="group flex items-center justify-between p-5 rounded-2xl border border-border/50 hover:border-primary/40 transition-colors">
+                <a href="https://wa.me/917994724015" target="_blank" rel="noreferrer" className="group flex items-center justify-between p-5 rounded-2xl glass hover:shadow-3d transition-shadow">
                   <div>
-                    <p className="text-xs uppercase tracking-widest text-cream-soft">WhatsApp</p>
+                    <p className="text-xs uppercase tracking-widest text-cream-soft font-mono">WhatsApp</p>
                     <p className="font-display text-lg text-cream">(+91) 799 472 4015</p>
                   </div>
                   <ArrowUpRight className="w-5 h-5 text-cream-soft group-hover:text-primary transition-colors" />
                 </a>
-                <div className="p-5 rounded-2xl border border-border/50">
-                  <p className="text-xs uppercase tracking-widest text-cream-soft">Based in</p>
+                <div className="p-5 rounded-2xl glass">
+                  <p className="text-xs uppercase tracking-widest text-cream-soft font-mono">Based in</p>
                   <p className="font-display text-lg text-cream">Areekode, Malappuram · Kerala, India</p>
                 </div>
               </div>
@@ -386,10 +437,10 @@ const Index = () => {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-border/40 py-10">
+      <footer className="border-t border-white/5 py-8">
         <div className="container flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-cream-soft">
           <p>© {new Date().getFullYear()} Mohammed Shafi TP · Graphic Designer · Sha Creatives</p>
-          <p className="font-serif-display italic">Crafted with care &amp; <span className="text-primary">✦</span> coral.</p>
+          <p className="font-serif-display italic">Crafted with care &amp; <span className="text-iridescent">✦</span> light.</p>
         </div>
       </footer>
     </div>
