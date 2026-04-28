@@ -127,6 +127,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-background">
+      {/* Global rain — adds depth across all sections */}
+      <div className="rain-layer" aria-hidden="true" />
       {/* NAV — Liquid Glass (Apple WWDC '25 style) */}
       <header className="fixed top-4 inset-x-0 z-50 px-4">
         <div className="container max-w-6xl mx-auto">
@@ -206,28 +208,25 @@ const Index = () => {
 
           {/* Portrait — right, framed & smaller */}
           <div className="md:col-span-5 relative animate-fade-up" style={{ animationDelay: "120ms" }}>
-            <div className="relative mx-auto max-w-[360px] md:max-w-[420px]">
-              {/* Iridescent halo */}
-              <div className="absolute -inset-6 rounded-[2.5rem] bg-iridescent opacity-40 blur-2xl animate-float-slow" />
-              {/* Frame */}
-              <div className="relative rounded-[2rem] overflow-hidden liquid-glass p-2 shadow-3d">
-                <div className="relative rounded-[1.6rem] overflow-hidden aspect-[4/5] bg-background-deep">
-                  <img
-                    src={heroPortrait}
-                    alt="Mohammed Shafi TP, graphic designer"
-                    className="w-full h-full object-cover object-[center_20%] animate-hero-zoom"
-                  />
-                  {/* color wash for cohesion */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-background-deep/70 via-transparent to-transparent" />
-                  <div className="absolute inset-0 bg-gradient-to-br from-grad-1/10 via-transparent to-grad-3/15 mix-blend-overlay" />
-                </div>
-              </div>
+            <div className="relative mx-auto max-w-[360px] md:max-w-[420px] aspect-[4/5]">
+              {/* Divine aura — soft rotating color halo */}
+              <div className="absolute -inset-10 divine-aura rounded-full animate-float-slow" />
+              {/* Divine light rays */}
+              <div className="absolute -inset-6 divine-rays rounded-full" />
+              {/* Portrait — frameless, masked into background */}
+              <img
+                src={heroPortrait}
+                alt="Mohammed Shafi TP, graphic designer"
+                className="relative w-full h-full object-cover object-[center_20%] portrait-blend animate-hero-zoom"
+              />
+              {/* subtle color wash */}
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent pointer-events-none portrait-blend" />
               {/* Floating chip */}
-              <div className="absolute -bottom-4 -left-4 liquid-glass rounded-2xl px-4 py-2.5 flex items-center gap-2.5 shadow-3d">
+              <div className="absolute -bottom-2 -left-2 liquid-glass rounded-2xl px-4 py-2.5 flex items-center gap-2.5 shadow-3d">
                 <span className="w-2 h-2 rounded-full bg-primary shadow-glow animate-pulse" />
                 <span className="text-xs font-mono text-cream">Available for work</span>
               </div>
-              <div className="absolute -top-3 -right-3 liquid-glass rounded-full px-3 py-1.5 flex items-center gap-1.5">
+              <div className="absolute top-2 -right-2 liquid-glass rounded-full px-3 py-1.5 flex items-center gap-1.5">
                 <Sparkles className="w-3 h-3 text-primary" />
                 <span className="text-[10px] uppercase tracking-widest font-mono text-cream-soft">Designer</span>
               </div>
