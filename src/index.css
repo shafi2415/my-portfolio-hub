@@ -238,3 +238,84 @@
 .animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
 .animate-fade-up { animation: fade-up 0.9s var(--transition-smooth) both; }
 .animate-hero-zoom { animation: hero-zoom 2.4s var(--transition-smooth) both; }
+
+/* ============================================================================
+   Rain background — fixed full-screen overlay, deep mood
+   ============================================================================ */
+.rain-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 0%, hsl(var(--grad-2) / 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 100%, hsl(var(--grad-1) / 0.08) 0%, transparent 55%);
+}
+.rain-bg::before,
+.rain-bg::after {
+  content: "";
+  position: absolute;
+  inset: -20% -10% -10% -10%;
+  background-image:
+    repeating-linear-gradient(
+      102deg,
+      transparent 0px,
+      transparent 22px,
+      hsl(210 100% 80% / 0.18) 22px,
+      hsl(210 100% 80% / 0.18) 23px,
+      transparent 23px,
+      transparent 60px
+    );
+  background-size: 60px 220px;
+  animation: rain-fall 0.85s linear infinite;
+  opacity: 0.55;
+  mix-blend-mode: screen;
+}
+.rain-bg::after {
+  background-image:
+    repeating-linear-gradient(
+      100deg,
+      transparent 0px,
+      transparent 36px,
+      hsl(190 95% 75% / 0.10) 36px,
+      hsl(190 95% 75% / 0.10) 37px,
+      transparent 37px,
+      transparent 90px
+    );
+  background-size: 90px 320px;
+  animation: rain-fall 1.6s linear infinite;
+  opacity: 0.4;
+}
+
+@keyframes rain-fall {
+  from { background-position: 0 0; }
+  to   { background-position: -60px 220px; }
+}
+
+/* Feathered portrait — soft alpha edges that blend with background */
+.feather-portrait {
+  -webkit-mask-image: radial-gradient(ellipse 70% 78% at 50% 45%, #000 55%, transparent 92%);
+          mask-image: radial-gradient(ellipse 70% 78% at 50% 45%, #000 55%, transparent 92%);
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+}
+
+/* Lightning glow — pulsing electric aura behind portrait */
+.lightning-glow {
+  position: absolute;
+  inset: -12%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, hsl(var(--grad-3) / 0.55) 0%, hsl(var(--grad-2) / 0.35) 35%, transparent 70%);
+  filter: blur(40px);
+  animation: lightning-pulse 4.5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes lightning-pulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  45%      { opacity: 1;    transform: scale(1.06); }
+  48%      { opacity: 0.4;  transform: scale(1.02); }
+  50%      { opacity: 1;    transform: scale(1.08); }
+  55%      { opacity: 0.6;  transform: scale(1.04); }
+}
