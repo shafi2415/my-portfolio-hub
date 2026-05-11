@@ -52,6 +52,12 @@ export default {
           DEFAULT: "hsl(var(--cream))",
           soft: "hsl(var(--cream-soft))",
         },
+        gold: {
+          DEFAULT: "hsl(var(--gold))",
+          soft: "hsl(var(--gold-soft))",
+          deep: "hsl(var(--gold-deep))",
+        },
+        ink: "hsl(var(--ink))",
         "background-deep": "hsl(var(--background-deep))",
         "background-elev": "hsl(var(--background-elev))",
         sidebar: {
