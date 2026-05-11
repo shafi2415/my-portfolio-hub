@@ -4,318 +4,252 @@
 
 /* ============================================================================
    Mohammed Shafi TP — Graphic Designer Portfolio
-   Apple-inspired modern aesthetic. Deep near-black with iridescent gradients.
-   All colors are HSL.
+   Editorial cream-on-black with champagne gold accents.
+   Inspired by Khoi Pham's Behance portfolio (serif display + halftone pills).
+   All colors HSL.
    ============================================================================ */
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @layer base {
   :root {
-    /* Canvas — near black like apple.com */
-    --background: 220 18% 4%;
-    --background-deep: 222 22% 2%;
-    --background-elev: 220 14% 9%;
-    --foreground: 0 0% 98%;
+    /* Canvas — warm near-black */
+    --background: 36 14% 5%;
+    --background-deep: 30 18% 3%;
+    --background-elev: 34 12% 9%;
+    --foreground: 42 38% 90%;
 
-    /* Iridescent gradient stops */
-    --grad-1: 270 90% 65%;   /* violet */
-    --grad-2: 220 95% 62%;   /* electric blue */
-    --grad-3: 190 95% 60%;   /* cyan */
-    --grad-4: 320 90% 65%;   /* magenta */
+    /* Editorial palette */
+    --cream: 42 38% 90%;          /* #F2EBD8-ish */
+    --cream-soft: 38 22% 72%;
+    --ink: 30 18% 4%;
+    --gold: 36 45% 60%;           /* champagne */
+    --gold-soft: 36 35% 50%;
+    --gold-deep: 32 50% 38%;
 
-    /* Primary = electric blue/cyan */
-    --primary: 210 100% 62%;
-    --primary-foreground: 220 25% 4%;
-    --primary-glow: 190 95% 60%;
+    /* Map gradient stops to gold tones (legacy refs use these) */
+    --grad-1: 36 50% 62%;
+    --grad-2: 36 45% 55%;
+    --grad-3: 30 35% 70%;
+    --grad-4: 36 60% 50%;
 
-    --cream: 0 0% 98%;
-    --cream-soft: 220 12% 72%;
+    --primary: 36 45% 60%;
+    --primary-foreground: 30 18% 4%;
+    --primary-glow: 36 65% 65%;
 
-    --secondary: 220 12% 14%;
-    --secondary-foreground: 0 0% 95%;
+    --secondary: 32 12% 12%;
+    --secondary-foreground: 42 38% 90%;
 
-    --muted: 220 10% 12%;
-    --muted-foreground: 220 8% 65%;
+    --muted: 32 10% 11%;
+    --muted-foreground: 38 14% 62%;
 
-    --accent: 270 90% 65%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 36 45% 60%;
+    --accent-foreground: 30 18% 4%;
 
-    --card: 220 14% 8%;
-    --card-foreground: 0 0% 98%;
+    --card: 32 12% 8%;
+    --card-foreground: 42 38% 90%;
 
-    --popover: 220 18% 6%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 32 14% 6%;
+    --popover-foreground: 42 38% 90%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 70% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 12% 16%;
-    --input: 220 12% 16%;
-    --ring: 210 100% 62%;
+    --border: 36 14% 16%;
+    --input: 36 14% 16%;
+    --ring: 36 45% 60%;
 
     --radius: 1.25rem;
 
-    /* Signature gradients */
-    --gradient-iridescent: linear-gradient(135deg, hsl(var(--grad-1)) 0%, hsl(var(--grad-2)) 35%, hsl(var(--grad-3)) 65%, hsl(var(--grad-4)) 100%);
-    --gradient-cool: linear-gradient(135deg, hsl(var(--grad-2)) 0%, hsl(var(--grad-3)) 100%);
-    --gradient-warm: linear-gradient(135deg, hsl(var(--grad-1)) 0%, hsl(var(--grad-4)) 100%);
-    --gradient-card: linear-gradient(160deg, hsl(220 14% 11% / 0.8) 0%, hsl(220 18% 6% / 0.4) 100%);
-    --gradient-text: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(220 15% 75%) 100%);
-    --gradient-hero-fade: linear-gradient(180deg, hsl(220 22% 2% / 0.55) 0%, hsl(220 22% 2% / 0.2) 30%, hsl(220 22% 2% / 0.65) 75%, hsl(220 22% 2% / 0.98) 100%);
+    /* Gradients — all gold/cream now */
+    --gradient-iridescent: linear-gradient(135deg, hsl(var(--gold-deep)) 0%, hsl(var(--gold)) 50%, hsl(var(--cream)) 100%);
+    --gradient-cool: linear-gradient(135deg, hsl(var(--gold-deep)) 0%, hsl(var(--gold)) 100%);
+    --gradient-warm: linear-gradient(135deg, hsl(var(--gold)) 0%, hsl(var(--gold-deep)) 100%);
+    --gradient-card: linear-gradient(160deg, hsl(34 12% 11% / 0.85) 0%, hsl(32 14% 6% / 0.5) 100%);
+    --gradient-text: linear-gradient(135deg, hsl(var(--cream)) 0%, hsl(var(--gold)) 100%);
 
-    /* 3D shadows */
-    --shadow-soft: 0 10px 40px -12px hsl(220 60% 0% / 0.8);
-    --shadow-glow: 0 0 80px -10px hsl(var(--primary) / 0.5);
-    --shadow-glow-violet: 0 0 100px -20px hsl(var(--grad-1) / 0.55);
-    --shadow-card: 0 30px 80px -30px hsl(220 60% 0% / 0.9), 0 0 0 1px hsl(0 0% 100% / 0.04) inset;
-    --shadow-3d: 0 20px 60px -20px hsl(var(--grad-2) / 0.4), 0 0 0 1px hsl(0 0% 100% / 0.06) inset;
+    --shadow-soft: 0 10px 40px -12px hsl(30 60% 0% / 0.8);
+    --shadow-glow: 0 0 60px -10px hsl(var(--gold) / 0.45);
+    --shadow-card: 0 30px 80px -30px hsl(30 60% 0% / 0.9), 0 0 0 1px hsl(var(--cream) / 0.05) inset;
+    --shadow-3d: 0 20px 60px -20px hsl(var(--gold) / 0.25), 0 0 0 1px hsl(var(--cream) / 0.06) inset;
 
     --transition-smooth: cubic-bezier(0.22, 1, 0.36, 1);
 
-    /* Sidebar (unused) */
-    --sidebar-background: 220 18% 4%;
-    --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 210 100% 62%;
-    --sidebar-primary-foreground: 220 25% 4%;
-    --sidebar-accent: 220 12% 14%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 220 12% 16%;
-    --sidebar-ring: 210 100% 62%;
+    --sidebar-background: 36 14% 5%;
+    --sidebar-foreground: 42 38% 90%;
+    --sidebar-primary: 36 45% 60%;
+    --sidebar-primary-foreground: 30 18% 4%;
+    --sidebar-accent: 32 12% 12%;
+    --sidebar-accent-foreground: 42 38% 90%;
+    --sidebar-border: 36 14% 16%;
+    --sidebar-ring: 36 45% 60%;
   }
 }
 
 @layer base {
   * { @apply border-border; }
-
   html { scroll-behavior: smooth; }
-
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', system-ui, sans-serif;
-    font-feature-settings: 'cv11', 'ss01', 'ss03';
+    font-family: 'Inter Tight', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
-
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', system-ui, sans-serif;
-    letter-spacing: -0.035em;
-    font-weight: 700;
+    font-family: 'Fraunces', 'Times New Roman', serif;
+    font-optical-sizing: auto;
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+    letter-spacing: -0.02em;
+    font-weight: 500;
   }
-
-  ::selection {
-    background: hsl(var(--primary) / 0.4);
-    color: hsl(0 0% 100%);
-  }
+  ::selection { background: hsl(var(--gold) / 0.35); color: hsl(var(--cream)); }
 }
 
 @layer utilities {
-  .font-display { font-family: 'Inter', system-ui, sans-serif; letter-spacing: -0.04em; }
-  .font-serif-display { font-family: 'Instrument Serif', Georgia, serif; letter-spacing: -0.02em; }
-  .font-mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+  /* Type families */
+  .font-display     { font-family: 'Fraunces', 'Times New Roman', serif; font-variation-settings: "opsz" 144, "SOFT" 50; letter-spacing: -0.025em; }
+  .font-serif-display { font-family: 'Fraunces', 'Times New Roman', serif; font-variation-settings: "opsz" 144, "SOFT" 100; }
+  .font-script      { font-family: 'Italianno', 'Brush Script MT', cursive; letter-spacing: 0; }
+  .font-mono        { font-family: 'Inter Tight', ui-sans-serif, system-ui; letter-spacing: 0.02em; }
+  .font-sans        { font-family: 'Inter Tight', ui-sans-serif, system-ui; }
 
-  .text-cream { color: hsl(var(--cream)); }
+  /* Color helpers */
+  .text-cream      { color: hsl(var(--cream)); }
   .text-cream-soft { color: hsl(var(--cream-soft)); }
+  .text-gold       { color: hsl(var(--gold)); }
+  .text-gold-soft  { color: hsl(var(--gold-soft)); }
+  .bg-ink          { background-color: hsl(var(--ink)); }
 
-  .bg-card-grad { background-image: var(--gradient-card); }
-  .bg-iridescent { background-image: var(--gradient-iridescent); }
-  .bg-cool-grad { background-image: var(--gradient-cool); }
-  .bg-warm-grad { background-image: var(--gradient-warm); }
-  .bg-hero-fade { background-image: var(--gradient-hero-fade); }
+  /* Legacy gradient utilities — remapped to cream/gold */
+  .bg-card-grad    { background-image: var(--gradient-card); }
+  .bg-iridescent   { background-image: var(--gradient-cool); }
+  .bg-cool-grad    { background-image: var(--gradient-cool); }
+  .bg-warm-grad    { background-image: var(--gradient-warm); }
 
   .text-gradient {
     background-image: var(--gradient-text);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
   }
   .text-iridescent {
-    background-image: var(--gradient-iridescent);
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: shimmer 8s ease-in-out infinite;
+    background-image: linear-gradient(135deg, hsl(var(--gold)) 0%, hsl(var(--cream)) 60%, hsl(var(--gold)) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
   }
 
-  .shadow-soft { box-shadow: var(--shadow-soft); }
-  .shadow-glow { box-shadow: var(--shadow-glow); }
-  .shadow-glow-violet { box-shadow: var(--shadow-glow-violet); }
-  .shadow-card { box-shadow: var(--shadow-card); }
-  .shadow-3d { box-shadow: var(--shadow-3d); }
+  .shadow-soft  { box-shadow: var(--shadow-soft); }
+  .shadow-glow  { box-shadow: var(--shadow-glow); }
+  .shadow-card  { box-shadow: var(--shadow-card); }
+  .shadow-3d    { box-shadow: var(--shadow-3d); }
 
+  /* Glass surfaces */
   .glass {
-    background: hsl(220 18% 6% / 0.55);
-    backdrop-filter: blur(24px) saturate(180%);
-    -webkit-backdrop-filter: blur(24px) saturate(180%);
-    border: 1px solid hsl(0 0% 100% / 0.08);
+    background: hsl(32 12% 8% / 0.6);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid hsl(var(--cream) / 0.08);
   }
-  .glass-strong {
-    background: hsl(220 18% 5% / 0.75);
-    backdrop-filter: blur(30px) saturate(180%);
-    -webkit-backdrop-filter: blur(30px) saturate(180%);
-    border: 1px solid hsl(0 0% 100% / 0.1);
-  }
-
-  /* Liquid Glass — Apple WWDC '25 inspired refractive surface */
   .liquid-glass {
     position: relative;
     background:
-      linear-gradient(135deg, hsl(0 0% 100% / 0.08) 0%, hsl(0 0% 100% / 0.02) 50%, hsl(0 0% 100% / 0.06) 100%),
-      hsl(220 18% 6% / 0.45);
-    backdrop-filter: blur(28px) saturate(200%);
-    -webkit-backdrop-filter: blur(28px) saturate(200%);
-    border: 1px solid hsl(0 0% 100% / 0.12);
+      linear-gradient(135deg, hsl(var(--cream) / 0.06) 0%, hsl(var(--cream) / 0.01) 50%, hsl(var(--cream) / 0.05) 100%),
+      hsl(32 12% 6% / 0.55);
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    border: 1px solid hsl(var(--cream) / 0.10);
     box-shadow:
-      inset 0 1px 0 0 hsl(0 0% 100% / 0.18),
+      inset 0 1px 0 0 hsl(var(--cream) / 0.14),
       inset 0 -1px 0 0 hsl(0 0% 0% / 0.25),
-      0 10px 40px -10px hsl(220 60% 0% / 0.6);
+      0 10px 40px -10px hsl(30 60% 0% / 0.55);
   }
-  .liquid-glass::after {
+
+  /* === Editorial motifs === */
+
+  /* Halftone pill — glossy chip with dotted shading like the reference */
+  .halftone-pill {
+    position: relative;
+    border-radius: 9999px;
+    background:
+      radial-gradient(ellipse at 30% 30%, hsl(var(--cream) / 0.18) 0%, transparent 55%),
+      radial-gradient(circle at center, hsl(var(--cream) / 0.06) 0%, hsl(var(--ink) / 0.85) 70%);
+    border: 1px solid hsl(var(--cream) / 0.14);
+    box-shadow:
+      inset 0 1px 0 hsl(var(--cream) / 0.2),
+      inset 0 -8px 16px hsl(0 0% 0% / 0.4),
+      0 12px 30px -12px hsl(0 0% 0% / 0.6);
+  }
+  .halftone-pill::before {
     content: "";
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     border-radius: inherit;
     pointer-events: none;
-    background: linear-gradient(120deg, hsl(var(--grad-2) / 0.10) 0%, transparent 35%, transparent 65%, hsl(var(--grad-1) / 0.10) 100%);
-    mix-blend-mode: screen;
+    opacity: 0.55;
+    background-image: radial-gradient(hsl(var(--cream) / 0.18) 1px, transparent 1.4px);
+    background-size: 4px 4px;
+    mask-image: linear-gradient(180deg, transparent 0%, #000 35%, #000 70%, transparent 100%);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 35%, #000 70%, transparent 100%);
   }
 
-  .grain::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.05;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  .halftone-pill-cream {
+    position: relative;
+    border-radius: 9999px;
+    background:
+      radial-gradient(ellipse at 30% 25%, hsl(var(--cream)) 0%, hsl(38 30% 78%) 60%, hsl(36 25% 65%) 100%);
+    border: 1px solid hsl(var(--gold-deep) / 0.3);
+    box-shadow:
+      inset 0 1px 0 hsl(0 0% 100% / 0.6),
+      inset 0 -6px 14px hsl(var(--gold-deep) / 0.25),
+      0 10px 28px -10px hsl(0 0% 0% / 0.55);
+    color: hsl(var(--ink));
   }
 
-  .marquee { animation: marquee 40s linear infinite; }
+  /* Film grain — fixed full-bleed overlay */
+  .grain-overlay {
+    position: fixed; inset: 0; pointer-events: none; z-index: 1;
+    opacity: 0.07; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
 
+  /* Soft radial vignette */
+  .vignette-overlay {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse at 50% 0%, hsl(var(--gold) / 0.07) 0%, transparent 55%),
+      radial-gradient(ellipse at center, transparent 40%, hsl(var(--background-deep)) 110%);
+  }
+
+  /* Duotone portrait — cream + ink wash */
+  .duotone-portrait {
+    filter: grayscale(100%) contrast(1.1) brightness(0.95);
+    mix-blend-mode: luminosity;
+  }
+
+  /* Marquee */
+  .marquee { animation: marquee 50s linear infinite; }
+
+  /* Caret for typewriter */
   .caret::after {
     content: '';
     display: inline-block;
-    width: 3px;
-    height: 1em;
-    background: hsl(var(--primary));
+    width: 2px; height: 0.9em;
+    background: hsl(var(--gold));
     margin-left: 4px;
     vertical-align: text-bottom;
     animation: blink 1s steps(2) infinite;
-    box-shadow: 0 0 10px hsl(var(--primary));
   }
 }
 
 @keyframes marquee {
   from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  to   { transform: translateX(-50%); }
 }
-
-@keyframes shimmer {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
 @keyframes blink {
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0; }
 }
-
-@keyframes float-slow {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
-}
-
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(28px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
 }
 
-@keyframes hero-zoom {
-  from { transform: scale(1.08); }
-  to { transform: scale(1); }
-}
-
-.animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
-.animate-fade-up { animation: fade-up 0.9s var(--transition-smooth) both; }
-.animate-hero-zoom { animation: hero-zoom 2.4s var(--transition-smooth) both; }
-
-/* ============================================================================
-   Rain background — fixed full-screen overlay, deep mood
-   ============================================================================ */
-.rain-bg {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-  background:
-    radial-gradient(ellipse at 50% 0%, hsl(var(--grad-2) / 0.08) 0%, transparent 55%),
-    radial-gradient(ellipse at 50% 100%, hsl(var(--grad-1) / 0.08) 0%, transparent 55%);
-}
-.rain-bg::before,
-.rain-bg::after {
-  content: "";
-  position: absolute;
-  inset: -20% -10% -10% -10%;
-  background-image:
-    repeating-linear-gradient(
-      102deg,
-      transparent 0px,
-      transparent 22px,
-      hsl(210 100% 80% / 0.18) 22px,
-      hsl(210 100% 80% / 0.18) 23px,
-      transparent 23px,
-      transparent 60px
-    );
-  background-size: 60px 220px;
-  animation: rain-fall 0.85s linear infinite;
-  opacity: 0.55;
-  mix-blend-mode: screen;
-}
-.rain-bg::after {
-  background-image:
-    repeating-linear-gradient(
-      100deg,
-      transparent 0px,
-      transparent 36px,
-      hsl(190 95% 75% / 0.10) 36px,
-      hsl(190 95% 75% / 0.10) 37px,
-      transparent 37px,
-      transparent 90px
-    );
-  background-size: 90px 320px;
-  animation: rain-fall 1.6s linear infinite;
-  opacity: 0.4;
-}
-
-@keyframes rain-fall {
-  from { background-position: 0 0; }
-  to   { background-position: -60px 220px; }
-}
-
-/* Feathered portrait — soft alpha edges that blend with background */
-.feather-portrait {
-  -webkit-mask-image: radial-gradient(ellipse 70% 78% at 50% 45%, #000 55%, transparent 92%);
-          mask-image: radial-gradient(ellipse 70% 78% at 50% 45%, #000 55%, transparent 92%);
-  -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
-}
-
-/* Lightning glow — pulsing electric aura behind portrait */
-.lightning-glow {
-  position: absolute;
-  inset: -12%;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 50% 50%, hsl(var(--grad-3) / 0.55) 0%, hsl(var(--grad-2) / 0.35) 35%, transparent 70%);
-  filter: blur(40px);
-  animation: lightning-pulse 4.5s ease-in-out infinite;
-  pointer-events: none;
-}
-@keyframes lightning-pulse {
-  0%, 100% { opacity: 0.55; transform: scale(1); }
-  45%      { opacity: 1;    transform: scale(1.06); }
-  48%      { opacity: 0.4;  transform: scale(1.02); }
-  50%      { opacity: 1;    transform: scale(1.08); }
-  55%      { opacity: 0.6;  transform: scale(1.04); }
-}
+.animate-fade-up   { animation: fade-up 0.9s var(--transition-smooth) both; }
+.animate-float-slow { animation: float-slow 7s ease-in-out infinite; }
