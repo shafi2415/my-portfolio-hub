@@ -193,14 +193,14 @@ const Index = () => {
 
               <h1 className="relative z-10 font-display text-cream font-light leading-[0.85] tracking-tight"
                   style={{ fontVariationSettings: '"opsz" 144, "wght" 400, "SOFT" 50' }}>
-                <span className="block text-[18vw] md:text-[14rem] lg:text-[17rem]">
+                <span className="block" style={{ fontSize: "clamp(3.5rem, 16vw, 14rem)" }}>
                   PORTFOLIO
                 </span>
               </h1>
 
               {/* Script signature */}
-              <div className="relative z-10 -mt-6 md:-mt-12 lg:-mt-16 pr-[4%] flex justify-end">
-                <span className="font-script text-gold text-[3.5rem] md:text-[5rem] lg:text-[6rem] leading-none italic">
+              <div className="relative z-10 -mt-4 md:-mt-10 pr-[6%] flex justify-end">
+                <span className="font-script text-gold leading-none italic" style={{ fontSize: "clamp(2.5rem, 7vw, 5.5rem)" }}>
                   Shafi
                 </span>
               </div>
