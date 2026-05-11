@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import {
   Palette, Type, Wand2, ArrowUpRight, Sparkles, Mail, Phone,
-  Briefcase, GraduationCap, FileImage, Languages, Video,
+  Briefcase, GraduationCap, Languages, Video,
   FileSpreadsheet, ArrowRight, Cpu, Brain, Code2,
 } from "lucide-react";
 import heroPortrait from "@/assets/hero-portrait.png";
@@ -21,9 +21,9 @@ const ROLES = [
 ];
 
 const services = [
-  { icon: Palette, title: "Graphic Design", desc: "Eye-catching visuals for social, print and web." },
-  { icon: Type, title: "Brand Identity", desc: "Memorable marks rooted in story and craft." },
-  { icon: Code2, title: "AI Web Apps", desc: "Modern web apps powered by AI workflows and automation." },
+  { icon: Palette, title: "Graphic Design", desc: "Posters, social and editorial visuals with a typographic eye." },
+  { icon: Type, title: "Brand Identity", desc: "Marks, systems and stationery rooted in story and craft." },
+  { icon: Code2, title: "AI Web Apps", desc: "Modern interfaces and dashboards powered by AI workflows." },
   { icon: FileSpreadsheet, title: "Excel Automation", desc: "Dashboards, formulas and macros that save hours." },
 ];
 
@@ -32,23 +32,23 @@ const skills = [
   { icon: Type, name: "Canva & Figma", detail: "Rapid concepts, social kits and UI mocks" },
   { icon: Video, name: "Video Editing", detail: "Reels, promos and motion content" },
   { icon: FileSpreadsheet, name: "Advanced MS Excel", detail: "Automations · MS Word · PowerPoint" },
-  { icon: Brain, name: "AI Tools & Curriculum", detail: "Curriculum design · E-learning · Classroom instruction" },
+  { icon: Brain, name: "AI Tools & Curriculum", detail: "Curriculum design · E-learning · Instruction" },
   { icon: Cpu, name: "Hardware & IT", detail: "PC maintenance and troubleshooting" },
 ];
 
 const experience = [
   { role: "Founder & Lead Graphic Designer", org: "Sha Creatives Design Studio", period: "Jan 2022 — Present",
-    desc: "Freelance design agency for social media branding and visual identity. Delivered 50+ marketing posters and 10+ custom logos for diverse clients." },
+    desc: "Freelance studio for social branding and visual identity. 50+ marketing posters and 10+ custom logos." },
   { role: "IT & AI Instructor · Digital Media Coordinator", org: "Malja'a Shareeath and Arts College", period: "Apr 2023 — Present",
-    desc: "Teach Adobe Creative Suite, MS Office, AI automation and PC hardware. Designed campus campaigns that grew engagement by ~70%." },
+    desc: "Teaching Adobe CS, MS Office, AI automation and PC hardware. Campus campaigns grew engagement ~70%." },
   { role: "Board Member · IT Curriculum Developer", org: "Coordination of Jami'a Junior Colleges (CJC)", period: "Mar 2023 — Present",
-    desc: "Spearheading IT education modernization across 69 affiliated colleges. Authored a comprehensive industry-aligned IT syllabus." },
+    desc: "Modernizing IT education across 69 affiliated colleges; authored an industry-aligned IT syllabus." },
   { role: "Online Tutor", org: "Zidnee Online Islamic School", period: "Dec 2026 — Present",
     desc: "Online instruction blending Islamic studies with digital learning best practices." },
   { role: "IT & Islamic Studies Teacher", org: "Kammu Soofi Memorial Islamic Complex", period: "2022 — 2023",
-    desc: "Taught IT and Islamic studies; selected to the Board of Studies based on teaching performance." },
+    desc: "Taught IT and Islamic studies; selected to the Board of Studies." },
   { role: "Operations Officer & Data Analyst", org: "Bismi E Tickets", period: "Oct 2019 — Mar 2021",
-    desc: "Managed travel documentation during COVID-19. Built Excel automations that cut processing time by 30%." },
+    desc: "Travel documentation during COVID-19; Excel automations cut processing time 30%." },
 ];
 
 const education = [
@@ -58,16 +58,16 @@ const education = [
 ];
 
 const projects = [
-  { img: daroraApp, title: "Darora Royal Group · POS App", category: "AI Web App · UI/UX", desc: "Mobile-first dashboard for sales, inventory and ledger — deep violet glass UI with iridescent accents." },
-  { img: kinderjoyApp, title: "Kinderjoy · Zidnee Islamic School", category: "AI Web App · EdTech", desc: "Playful learning app for kids: tasks, quizzes and weekly Islamic challenges with vibrant gamified UI." },
-  { img: postersA, title: "Sha Creatives · Poster Vol. 1", category: "Social & Print", desc: "Admission, event and brand campaign posters in Malayalam, Arabic and English typography." },
-  { img: logo1, title: "Malja'a Shareeath", category: "Logo · Branding", desc: "Crest mark blending Arabic calligraphy with an architectural arch motif, foiled on craft paper." },
-  { img: postersB, title: "Sha Creatives · Poster Vol. 2", category: "Campaign Creatives", desc: "Long-form campaign posters spanning workshops, product, hospitality and educational institutions." },
-  { img: logo2, title: "Monogram in Stone", category: "Logo · Brand Mark", desc: "Geometric monogram in pencil-pictogram form, embossed onto a textured green canvas." },
-  { img: logo3, title: "Al Ishraq Identity", category: "Logo · Print", desc: "Bold Arabic display logotype paired with confident English wordmark for a student union." },
+  { img: daroraApp, title: "Darora Royal Group · POS App", category: "AI Web App · UI/UX", desc: "Mobile-first dashboard for sales, inventory and ledger." },
+  { img: kinderjoyApp, title: "Kinderjoy · Zidnee Islamic School", category: "AI Web App · EdTech", desc: "Playful learning app for kids with gamified lessons." },
+  { img: postersA, title: "Sha Creatives · Poster Vol. 1", category: "Social & Print", desc: "Admission, event and brand campaign posters." },
+  { img: logo1, title: "Malja'a Shareeath", category: "Logo · Branding", desc: "Crest mark blending Arabic calligraphy with an arch motif." },
+  { img: postersB, title: "Sha Creatives · Poster Vol. 2", category: "Campaign Creatives", desc: "Long-form campaign posters across multiple sectors." },
+  { img: logo2, title: "Monogram in Stone", category: "Logo · Brand Mark", desc: "Geometric monogram embossed on a textured canvas." },
+  { img: logo3, title: "Al Ishraq Identity", category: "Logo · Print", desc: "Bold Arabic display logotype with English wordmark." },
 ];
 
-const TICKER = ["Graphic Design", "Brand Identity", "AI Web Apps", "Excel Automation", "Sha Creatives", "Adobe Creative Suite"];
+const TICKER = ["Graphic Design", "Brand Identity", "Editorial", "Posters", "Logos", "Sha Creatives", "Available 2026"];
 
 const useReveal = () => {
   useEffect(() => {
@@ -81,13 +81,11 @@ const useReveal = () => {
   }, []);
 };
 
-/** Typewriter that cycles ROLES with type/erase rhythm */
 const useTypewriter = (words: string[], typeMs = 70, eraseMs = 35, holdMs = 1400) => {
   const [text, setText] = useState("");
   const idx = useRef(0);
   const phase = useRef<"type" | "hold" | "erase">("type");
   const pos = useRef(0);
-
   useEffect(() => {
     let timer: number;
     const tick = () => {
@@ -110,9 +108,13 @@ const useTypewriter = (words: string[], typeMs = 70, eraseMs = 35, holdMs = 1400
     timer = window.setTimeout(tick, typeMs);
     return () => window.clearTimeout(timer);
   }, [words, typeMs, eraseMs, holdMs]);
-
   return text;
 };
+
+/** Small decorative "○" / "●" bullets */
+const Dot = ({ filled = false, className = "" }: { filled?: boolean; className?: string }) => (
+  <span aria-hidden className={`inline-block w-2 h-2 rounded-full align-middle ${filled ? "bg-cream" : "border border-cream/60"} ${className}`} />
+);
 
 const Index = () => {
   useReveal();
@@ -120,37 +122,37 @@ const Index = () => {
   const [open, setOpen] = useState(false);
   const nav = [
     { id: "work", label: "Work" },
-    { id: "services", label: "Services" },
     { id: "about", label: "About" },
+    { id: "experience", label: "Experience" },
     { id: "contact", label: "Contact" },
   ];
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-background">
-      {/* Global rain effect — fixed behind content for deeper mood */}
-      <div className="rain-bg" aria-hidden="true" />
-      {/* NAV — Liquid Glass (Apple WWDC '25 style) */}
+    <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
+      {/* Atmosphere */}
+      <div className="vignette-overlay" aria-hidden />
+      <div className="grain-overlay" aria-hidden />
+
+      {/* NAV */}
       <header className="fixed top-4 inset-x-0 z-50 px-4">
         <div className="container max-w-6xl mx-auto">
-          <div className="liquid-glass rounded-full pl-3 pr-3 py-2 flex items-center justify-between">
-            <a href="#top" className="flex items-center gap-2.5 pl-2">
-              <span className="grid place-items-center w-9 h-9 rounded-full bg-iridescent text-white font-display font-bold text-sm shadow-glow">S</span>
-              <span className="font-display font-semibold tracking-tight text-cream text-[15px]">
-                My <span className="text-iridescent">Portfolio</span><span className="text-primary">.</span>
-              </span>
+          <div className="liquid-glass rounded-full pl-5 pr-3 py-2 flex items-center justify-between">
+            <a href="#top" className="flex items-baseline gap-1.5">
+              <span className="font-display text-cream text-[18px] tracking-tight">Shafi</span>
+              <span className="font-script text-gold text-[26px] leading-none -translate-y-[2px]">.</span>
             </a>
-            <nav className="hidden md:flex items-center gap-1 text-sm">
+            <nav className="hidden md:flex items-center gap-1 text-[13px] uppercase tracking-[0.18em]">
               {nav.map((n) => (
                 <a key={n.id} href={`#${n.id}`}
-                   className="px-4 py-2 rounded-full text-cream-soft hover:text-cream hover:bg-white/10 transition-all">
+                   className="px-4 py-2 rounded-full text-cream-soft hover:text-gold transition-colors">
                   {n.label}
                 </a>
               ))}
             </nav>
             <a href="https://wa.me/918086429311?text=Hi%20Shafi%2C%20I%27d%20like%20to%20hire%20you%20for%20a%20design%20project."
                target="_blank" rel="noreferrer"
-               className="hidden md:inline-flex items-center gap-2 rounded-full bg-cool-grad text-white px-5 py-2 text-sm font-medium hover:shadow-glow transition-shadow">
-              Hire me <ArrowUpRight className="w-4 h-4" />
+               className="hidden md:inline-flex items-center gap-2 halftone-pill-cream px-5 py-2 text-[12px] uppercase tracking-[0.2em] font-medium">
+              Hire me <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
             <button onClick={() => setOpen(!open)} className="md:hidden text-cream px-3 py-2" aria-label="Menu">☰</button>
           </div>
@@ -159,7 +161,7 @@ const Index = () => {
               <div className="py-3 px-4 flex flex-col gap-1">
                 {nav.map((n) => (
                   <a key={n.id} href={`#${n.id}`} onClick={() => setOpen(false)}
-                     className="text-cream-soft hover:text-cream px-3 py-2 rounded-lg hover:bg-white/10 transition-colors">
+                     className="text-cream-soft hover:text-gold uppercase tracking-[0.2em] text-sm px-3 py-2 rounded-lg hover:bg-cream/5 transition-colors">
                     {n.label}
                   </a>
                 ))}
@@ -169,307 +171,315 @@ const Index = () => {
         </div>
       </header>
 
-      {/* HERO — Editorial split: text left, framed portrait right */}
-      <section id="top" className="relative min-h-screen flex items-center overflow-hidden pt-28 pb-16 md:pt-32 md:pb-20">
-        {/* Ambient backdrop */}
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute -top-40 -right-32 w-[40rem] h-[40rem] rounded-full bg-warm-grad opacity-25 blur-[140px]" />
-          <div className="absolute -bottom-40 -left-32 w-[40rem] h-[40rem] rounded-full bg-cool-grad opacity-30 blur-[140px]" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,hsl(var(--background-deep))_85%)]" />
-        </div>
-
-        <div className="relative container grid md:grid-cols-12 gap-10 lg:gap-8 items-center">
-          {/* Text — left */}
-          <div className="md:col-span-7 space-y-5 animate-fade-up">
-            <div className="inline-flex items-center gap-2 rounded-full liquid-glass px-4 py-1.5 text-[11px] uppercase tracking-[0.25em] text-cream-soft">
-              <Sparkles className="w-3.5 h-3.5 text-primary" /> Sha Creatives · Portfolio 2026
-            </div>
-            <h1 className="font-display text-5xl sm:text-6xl md:text-[5rem] lg:text-[6rem] font-bold leading-[0.92] tracking-tighter">
-              <span className="text-gradient block">Mohammed</span>
-              <span className="text-iridescent block">Shafi TP</span>
-            </h1>
-            <div className="font-display text-xl sm:text-2xl md:text-3xl text-cream font-medium min-h-[2.4em] sm:min-h-[1.8em]">
-              I am a <span className="text-iridescent font-semibold caret">{role}</span>
-            </div>
-            <p className="text-base md:text-lg text-cream-soft max-w-xl leading-relaxed">
-              Founder of <span className="text-primary font-medium">Sha Creatives</span> — designing
-              brand identities, posters and AI-powered web experiences. Multilingual eye for English,
-              Arabic, Urdu and Malayalam typography.
-            </p>
-            <div className="flex flex-wrap gap-3 pt-2">
-              <a href="#work" className="group inline-flex items-center gap-2 rounded-full bg-cool-grad text-white px-7 py-3.5 font-medium hover:shadow-glow transition-all">
-                See the work <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-              </a>
-              <a href="#contact" className="inline-flex items-center gap-2 rounded-full liquid-glass text-cream px-7 py-3.5 font-medium hover:bg-white/10 transition-colors">
-                Start a project
-              </a>
-            </div>
-          </div>
-
-          {/* Portrait — right, framed & smaller */}
-          <div className="md:col-span-5 relative animate-fade-up" style={{ animationDelay: "120ms" }}>
-            <div className="relative mx-auto max-w-[340px] md:max-w-[400px]">
-              {/* Lightning electric glow behind portrait */}
-              <div className="lightning-glow" />
-              {/* Iridescent soft halo */}
-              <div className="absolute -inset-10 rounded-full bg-iridescent opacity-30 blur-3xl animate-float-slow" />
-              {/* Feathered portrait — no frame, edges blend into background */}
-              <div className="relative aspect-[4/5]">
-                <img
-                  src={heroPortrait}
-                  alt="Mohammed Shafi TP, graphic designer"
-                  className="feather-portrait relative w-full h-full object-cover object-[center_20%] animate-hero-zoom"
-                />
-                {/* color wash for cohesion */}
-                <div className="feather-portrait absolute inset-0 bg-gradient-to-t from-background-deep/60 via-transparent to-transparent" />
-                <div className="feather-portrait absolute inset-0 bg-gradient-to-br from-grad-1/10 via-transparent to-grad-3/15 mix-blend-overlay" />
+      {/* HERO — editorial centered composition */}
+      <section id="top" className="relative min-h-screen flex items-center justify-center pt-32 pb-20">
+        <div className="container relative">
+          <div className="flex flex-col items-center text-center animate-fade-up">
+            {/* Year tag */}
+            <div className="flex items-center gap-3 mb-10">
+              <Dot />
+              <div className="halftone-pill px-6 py-1.5">
+                <span className="font-display italic text-cream text-sm tracking-wide">2026</span>
               </div>
-              {/* Floating chip */}
-              <div className="absolute bottom-2 -left-2 liquid-glass rounded-2xl px-4 py-2.5 flex items-center gap-2.5 shadow-3d z-10">
-                <span className="w-2 h-2 rounded-full bg-primary shadow-glow animate-pulse" />
-                <span className="text-xs font-mono text-cream">Available for work</span>
+              <Dot filled />
+            </div>
+
+            {/* Giant PORTFOLIO wordmark with overlapping pills */}
+            <div className="relative w-full max-w-[1000px]">
+              {/* left pill behind 'PORT' */}
+              <div className="hidden md:block absolute left-[2%] top-[35%] w-[42%] h-[55%] halftone-pill rotate-[-2deg] z-0" aria-hidden />
+              {/* right pill behind 'LIO' */}
+              <div className="hidden md:block absolute right-[2%] top-[12%] w-[34%] h-[55%] halftone-pill rotate-[2deg] z-0" aria-hidden />
+
+              <h1 className="relative z-10 font-display text-cream font-light leading-[0.85] tracking-tight"
+                  style={{ fontVariationSettings: '"opsz" 144, "wght" 400, "SOFT" 50' }}>
+                <span className="block" style={{ fontSize: "clamp(3.5rem, 16vw, 14rem)" }}>
+                  PORTFOLIO
+                </span>
+              </h1>
+
+              {/* Script signature */}
+              <div className="relative z-10 -mt-4 md:-mt-10 pr-[6%] flex justify-end">
+                <span className="font-script text-gold leading-none italic" style={{ fontSize: "clamp(2.5rem, 7vw, 5.5rem)" }}>
+                  Shafi
+                </span>
               </div>
-              <div className="absolute top-2 -right-2 liquid-glass rounded-full px-3 py-1.5 flex items-center gap-1.5 z-10">
-                <Sparkles className="w-3 h-3 text-primary" />
-                <span className="text-[10px] uppercase tracking-widest font-mono text-cream-soft">Designer</span>
+            </div>
+
+            {/* Tagline */}
+            <div className="mt-10 flex flex-col items-center gap-4">
+              <div className="flex items-center gap-3 text-cream-soft text-[11px] uppercase tracking-[0.4em]">
+                <span className="h-px w-10 bg-cream/30" />
+                Mohammed Shafi TP
+                <span className="h-px w-10 bg-cream/30" />
+              </div>
+              <p className="font-display text-cream text-xl md:text-2xl">
+                I am a <span className="text-gold italic caret">{role}</span>
+              </p>
+              <p className="text-cream-soft max-w-xl text-sm md:text-base leading-relaxed">
+                Founder of <span className="text-gold">Sha Creatives</span> — designing brand identities,
+                posters and AI-powered web experiences. A multilingual eye for English, Arabic, Urdu and Malayalam typography.
+              </p>
+              <div className="flex flex-wrap gap-3 pt-2 justify-center">
+                <a href="#work" className="group inline-flex items-center gap-2 halftone-pill-cream px-7 py-3 text-[12px] uppercase tracking-[0.22em] font-medium">
+                  See the work <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                </a>
+                <a href="#contact" className="inline-flex items-center gap-2 halftone-pill px-7 py-3 text-[12px] uppercase tracking-[0.22em] text-cream">
+                  Start a project
+                </a>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Marquee — separator */}
-      <div className="overflow-hidden border-y border-white/5 py-4 bg-background-deep/60">
-        <div className="flex marquee whitespace-nowrap gap-10">
+      {/* MARQUEE */}
+      <div className="relative overflow-hidden border-y border-cream/10 py-5 bg-ink/60">
+        <div className="flex marquee whitespace-nowrap gap-12">
           {[...TICKER, ...TICKER, ...TICKER].map((t, i) => (
-            <span key={i} className="font-serif-display italic text-2xl md:text-4xl text-iridescent flex items-center gap-10">
-              {t} <span className="text-primary not-italic">✦</span>
+            <span key={i} className="font-display italic text-3xl md:text-5xl text-cream/90 flex items-center gap-12">
+              {t} <span className="text-gold not-italic">✦</span>
             </span>
           ))}
         </div>
       </div>
 
       {/* SERVICES */}
-      <section id="services" className="py-16 md:py-20 relative">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] rounded-full bg-warm-grad opacity-[0.08] blur-[120px] pointer-events-none" />
+      <section id="services" className="py-20 md:py-28 relative">
         <div className="container relative">
-          <div className="max-w-3xl mb-12" data-reveal>
-            <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4 font-mono">What I do</p>
-            <h2 className="font-display text-4xl md:text-6xl font-bold leading-[1.05]">
-              <span className="text-gradient">Design that</span> <span className="text-iridescent">speaks</span> <span className="text-gradient">before it sells.</span>
-            </h2>
+          <div className="grid md:grid-cols-12 gap-10 mb-14" data-reveal>
+            <div className="md:col-span-5">
+              <p className="text-[11px] uppercase tracking-[0.4em] text-gold mb-5">○ What I do</p>
+              <h2 className="font-display text-cream text-5xl md:text-6xl lg:text-7xl leading-[0.95] font-light">
+                Design that <em className="font-script text-gold not-italic md:text-7xl lg:text-8xl block leading-none">speaks</em>
+                before it sells.
+              </h2>
+            </div>
+            <div className="md:col-span-7 md:pt-8">
+              <p className="text-cream-soft text-base md:text-lg leading-relaxed max-w-xl">
+                Editorial layouts, typographic identity systems and quietly confident
+                interfaces — built with patience and a print designer's eye for detail.
+              </p>
+            </div>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-cream/10 border border-cream/10 rounded-2xl overflow-hidden">
             {services.map((s, i) => (
               <div key={s.title} data-reveal style={{ animationDelay: `${i * 80}ms` }}
-                   className="group relative glass rounded-3xl p-7 hover:shadow-3d hover:-translate-y-1 transition-all duration-500">
-                <div className="w-12 h-12 rounded-2xl bg-iridescent grid place-items-center mb-6 shadow-glow opacity-90 group-hover:opacity-100 transition-opacity">
-                  <s.icon className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="font-display text-xl font-semibold text-cream mb-2 tracking-tight">{s.title}</h3>
+                   className="group relative bg-background p-7 md:p-8 hover:bg-ink transition-colors">
+                <p className="font-display italic text-gold text-sm mb-6">0{i + 1} —</p>
+                <s.icon className="w-6 h-6 text-cream mb-5" strokeWidth={1.2} />
+                <h3 className="font-display text-cream text-2xl mb-2 font-normal">{s.title}</h3>
                 <p className="text-sm text-cream-soft leading-relaxed">{s.desc}</p>
-                <ArrowUpRight className="absolute top-6 right-6 w-5 h-5 text-cream/30 group-hover:text-primary transition-colors" />
+                <ArrowUpRight className="absolute top-7 right-7 w-4 h-4 text-cream/30 group-hover:text-gold transition-colors" />
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* WORK / PROJECTS */}
-      <section id="work" className="py-16 md:py-20 bg-background-deep/60 relative">
+      {/* WORK — editorial numbered list */}
+      <section id="work" className="py-20 md:py-28 bg-ink/50 relative border-y border-cream/10">
         <div className="container">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6" data-reveal>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6" data-reveal>
             <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4 font-mono">Selected work</p>
-              <h2 className="font-display text-4xl md:text-6xl font-bold max-w-2xl leading-[1.05]">
-                <span className="text-gradient">Posters, logos &amp;</span><br />
-                <span className="text-iridescent">brand identity.</span>
+              <p className="text-[11px] uppercase tracking-[0.4em] text-gold mb-5">○ Selected work · 2022—2026</p>
+              <h2 className="font-display text-cream text-5xl md:text-7xl leading-[0.95] font-light">
+                Posters, logos &amp; <em className="font-script text-gold not-italic block leading-none md:text-8xl">brand identity.</em>
               </h2>
             </div>
-            <p className="text-cream-soft md:text-right max-w-sm">
+            <p className="text-cream-soft md:text-right max-w-sm text-sm md:text-base">
               Recent campaigns, identities and editorial pieces — from admission posters to
               typographic brand marks.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-12 gap-4 md:gap-5">
-            {projects.map((p, i) => {
-              const spans = [
-                "md:col-span-7", "md:col-span-5",
-                "md:col-span-5", "md:col-span-7",
-                "md:col-span-4", "md:col-span-4", "md:col-span-4",
-              ];
-              const span = spans[i] ?? "md:col-span-4";
-              return (
-                <article key={p.title} data-reveal style={{ animationDelay: `${i * 90}ms` }}
-                  className={`${span} group relative overflow-hidden rounded-3xl glass hover:shadow-3d transition-all duration-500`}>
-                  <div className="aspect-[4/3] overflow-hidden bg-background-deep">
-                    <img src={p.img} alt={p.title}
-                         loading="lazy"
-                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          <div className="border-t border-cream/15">
+            {projects.map((p, i) => (
+              <article key={p.title} data-reveal style={{ animationDelay: `${i * 60}ms` }}
+                className="group relative grid grid-cols-12 gap-6 items-center py-6 md:py-8 border-b border-cream/15 hover:bg-cream/[0.03] transition-colors">
+                <span className="col-span-2 md:col-span-1 font-display italic text-gold text-lg md:text-xl">
+                  0{i + 1}
+                </span>
+                <div className="col-span-10 md:col-span-5">
+                  <h3 className="font-display text-cream text-2xl md:text-3xl lg:text-4xl font-light leading-tight">
+                    {p.title}
+                  </h3>
+                </div>
+                <div className="hidden md:block md:col-span-3 text-cream-soft text-[12px] uppercase tracking-[0.25em]">
+                  {p.category}
+                </div>
+                <div className="col-span-12 md:col-span-3 relative">
+                  <div className="aspect-[4/3] overflow-hidden rounded-xl border border-cream/10 bg-background">
+                    <img src={p.img} alt={p.title} loading="lazy"
+                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-background-deep/95 via-background-deep/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    <p className="text-xs uppercase tracking-widest text-primary mb-2 font-mono">{p.category}</p>
-                    <h3 className="font-display text-xl md:text-2xl font-bold text-cream mb-2">{p.title}</h3>
-                    <p className="text-sm text-cream-soft">{p.desc}</p>
-                  </div>
-                  <div className="p-5 group-hover:opacity-0 transition-opacity">
-                    <p className="text-[10px] uppercase tracking-widest text-primary mb-1 font-mono">{p.category}</p>
-                    <h3 className="font-display text-lg font-semibold text-cream">{p.title}</h3>
-                  </div>
-                </article>
-              );
-            })}
+                </div>
+                <div className="col-span-12 md:col-span-11 md:col-start-2 -mt-2 md:hidden text-cream-soft text-[11px] uppercase tracking-[0.25em]">
+                  {p.category}
+                </div>
+                <ArrowUpRight className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-5 h-5 text-cream/30 group-hover:text-gold group-hover:rotate-12 transition-all" />
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ABOUT */}
-      <section id="about" className="py-16 md:py-20">
-        <div className="container space-y-14">
-          {/* Why hire */}
-          <div className="grid md:grid-cols-12 gap-8" data-reveal>
-            <div className="md:col-span-5">
-              <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4 font-mono">Why hire me</p>
-              <h2 className="font-display text-4xl md:text-5xl font-bold leading-[1.05]">
-                <span className="text-gradient">A designer's eye,</span> <span className="text-iridescent">an operator's hands.</span>
+      {/* ABOUT — duotone portrait + bio */}
+      <section id="about" className="py-20 md:py-28 relative">
+        <div className="container">
+          <div className="grid md:grid-cols-12 gap-10 lg:gap-16 items-center" data-reveal>
+            <div className="md:col-span-5 relative">
+              <div className="relative aspect-[4/5] max-w-[420px] mx-auto rounded-2xl overflow-hidden border border-cream/10">
+                <div className="absolute inset-0 bg-ink" />
+                <img src={heroPortrait} alt="Mohammed Shafi TP"
+                     className="absolute inset-0 w-full h-full object-cover object-[center_20%] duotone-portrait" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-gold/20 via-transparent to-transparent mix-blend-overlay" />
+                <div className="absolute bottom-4 left-4 halftone-pill px-4 py-2 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
+                  <span className="text-[10px] uppercase tracking-[0.25em] text-cream">Available 2026</span>
+                </div>
+              </div>
+            </div>
+            <div className="md:col-span-7 space-y-6">
+              <p className="text-[11px] uppercase tracking-[0.4em] text-gold">○ About</p>
+              <h2 className="font-display text-cream text-4xl md:text-6xl leading-[0.98] font-light">
+                A designer's eye, <em className="font-script text-gold not-italic block md:inline">an operator's</em> hands.
               </h2>
-            </div>
-            <div className="md:col-span-7 grid sm:grid-cols-3 gap-4">
-              {[
-                { icon: Wand2, title: "Proven craft", desc: "50+ marketing posters and 10+ custom logos delivered through Sha Creatives." },
-                { icon: Code2, title: "AI + design", desc: "Web apps, automations and AI workflows alongside full visual identities." },
-                { icon: Sparkles, title: "Curriculum lead", desc: "Modernizing IT education across 69 affiliated colleges." },
-              ].map((c) => (
-                <div key={c.title} className="glass rounded-2xl p-6">
-                  <div className="w-10 h-10 rounded-xl bg-iridescent grid place-items-center mb-4 shadow-glow opacity-90">
-                    <c.icon className="w-5 h-5 text-white" />
+              <p className="text-cream-soft text-base md:text-lg leading-relaxed max-w-xl">
+                I'm Mohammed Shafi TP — founder of Sha Creatives, and an instructor of IT &amp; AI.
+                I design across print and screen with a strong typographic point of view, and I
+                build the systems behind the work, from Excel automations to AI-assisted web apps.
+              </p>
+              <div className="grid sm:grid-cols-3 gap-px bg-cream/10 border border-cream/10 rounded-xl overflow-hidden">
+                {[
+                  { icon: Wand2, title: "Proven craft", desc: "50+ posters, 10+ logos." },
+                  { icon: Code2, title: "AI + design", desc: "Apps and automations." },
+                  { icon: Sparkles, title: "Curriculum lead", desc: "69 affiliated colleges." },
+                ].map((c) => (
+                  <div key={c.title} className="bg-background p-5">
+                    <c.icon className="w-5 h-5 text-gold mb-3" strokeWidth={1.2} />
+                    <h4 className="font-display text-cream text-lg mb-1 font-normal">{c.title}</h4>
+                    <p className="text-xs text-cream-soft">{c.desc}</p>
                   </div>
-                  <h3 className="font-display text-lg font-semibold text-cream mb-2">{c.title}</h3>
-                  <p className="text-sm text-cream-soft leading-relaxed">{c.desc}</p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Skills */}
-          <div data-reveal>
+          {/* Toolkit */}
+          <div className="mt-20" data-reveal>
             <div className="flex items-end justify-between mb-8 gap-6">
-              <h3 className="font-display text-3xl md:text-4xl font-bold text-gradient">My toolkit.</h3>
-              <p className="text-cream-soft text-sm hidden md:block">Versatile skills in design, technology and languages.</p>
+              <h3 className="font-display text-cream text-3xl md:text-5xl font-light">
+                My <em className="font-script text-gold not-italic">toolkit.</em>
+              </h3>
+              <p className="text-cream-soft text-sm hidden md:block">Versatile across design, technology and languages.</p>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-cream/10 border border-cream/10 rounded-xl overflow-hidden">
               {skills.map((s) => (
-                <div key={s.name} className="flex items-start gap-4 rounded-2xl glass p-5 hover:shadow-3d transition-shadow">
-                  <div className="w-11 h-11 shrink-0 rounded-xl bg-iridescent grid place-items-center shadow-glow opacity-90">
-                    <s.icon className="w-5 h-5 text-white" />
-                  </div>
+                <div key={s.name} className="flex items-start gap-4 bg-background p-5">
+                  <s.icon className="w-5 h-5 text-gold mt-1 shrink-0" strokeWidth={1.2} />
                   <div>
-                    <h4 className="font-display font-semibold text-cream">{s.name}</h4>
-                    <p className="text-sm text-cream-soft">{s.detail}</p>
+                    <h4 className="font-display text-cream text-lg font-normal">{s.name}</h4>
+                    <p className="text-xs text-cream-soft">{s.detail}</p>
                   </div>
                 </div>
               ))}
-              <div className="flex items-start gap-4 rounded-2xl glass p-5">
-                <div className="w-11 h-11 shrink-0 rounded-xl bg-iridescent grid place-items-center shadow-glow opacity-90">
-                  <Languages className="w-5 h-5 text-white" />
-                </div>
+              <div className="flex items-start gap-4 bg-background p-5">
+                <Languages className="w-5 h-5 text-gold mt-1 shrink-0" strokeWidth={1.2} />
                 <div>
-                  <h4 className="font-display font-semibold text-cream">Languages</h4>
-                  <p className="text-sm text-cream-soft">English · Arabic · Urdu · Malayalam</p>
+                  <h4 className="font-display text-cream text-lg font-normal">Languages</h4>
+                  <p className="text-xs text-cream-soft">English · Arabic · Urdu · Malayalam</p>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Experience + Education */}
-          <div className="grid md:grid-cols-2 gap-8">
-            <div data-reveal>
-              <div className="flex items-center gap-3 mb-6">
-                <Briefcase className="w-5 h-5 text-primary" />
-                <h3 className="font-display text-3xl font-bold text-gradient">Experience</h3>
-              </div>
-              <ol className="relative border-l border-white/10 ml-3 space-y-7">
-                {experience.map((e) => (
-                  <li key={e.role} className="pl-6 relative">
-                    <span className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-iridescent shadow-glow" />
-                    <p className="text-xs uppercase tracking-widest text-primary font-mono">{e.period}</p>
-                    <h4 className="font-display text-lg font-semibold text-cream mt-1">{e.role}</h4>
-                    <p className="text-sm text-cream-soft">{e.org}</p>
-                    <p className="text-sm text-cream-soft/80 mt-2 leading-relaxed">{e.desc}</p>
-                  </li>
-                ))}
-              </ol>
+      {/* EXPERIENCE + EDUCATION */}
+      <section id="experience" className="py-20 md:py-28 bg-ink/50 border-y border-cream/10">
+        <div className="container grid md:grid-cols-2 gap-12 md:gap-16">
+          <div data-reveal>
+            <div className="flex items-center gap-3 mb-8">
+              <Briefcase className="w-4 h-4 text-gold" strokeWidth={1.5} />
+              <p className="text-[11px] uppercase tracking-[0.4em] text-gold">Experience</p>
             </div>
-            <div data-reveal>
-              <div className="flex items-center gap-3 mb-6">
-                <GraduationCap className="w-5 h-5 text-primary" />
-                <h3 className="font-display text-3xl font-bold text-gradient">Education</h3>
-              </div>
-              <ol className="relative border-l border-white/10 ml-3 space-y-7">
-                {education.map((e) => (
-                  <li key={e.title} className="pl-6 relative">
-                    <span className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-iridescent shadow-glow" />
-                    <p className="text-xs uppercase tracking-widest text-primary font-mono">{e.period}</p>
-                    <h4 className="font-display text-lg font-semibold text-cream mt-1">{e.title}</h4>
-                    <p className="text-sm text-cream-soft">{e.org}</p>
-                  </li>
-                ))}
-              </ol>
+            <h3 className="font-display text-cream text-4xl md:text-5xl mb-10 font-light">
+              Where I've <em className="font-script text-gold not-italic">worked.</em>
+            </h3>
+            <ol className="relative border-l border-cream/15 ml-2 space-y-8">
+              {experience.map((e) => (
+                <li key={e.role} className="pl-6 relative">
+                  <span className="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-gold" />
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-gold-soft">{e.period}</p>
+                  <h4 className="font-display text-cream text-xl mt-1 font-normal">{e.role}</h4>
+                  <p className="text-sm text-cream/80 italic font-display">{e.org}</p>
+                  <p className="text-sm text-cream-soft mt-2 leading-relaxed">{e.desc}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+          <div data-reveal>
+            <div className="flex items-center gap-3 mb-8">
+              <GraduationCap className="w-4 h-4 text-gold" strokeWidth={1.5} />
+              <p className="text-[11px] uppercase tracking-[0.4em] text-gold">Education</p>
             </div>
+            <h3 className="font-display text-cream text-4xl md:text-5xl mb-10 font-light">
+              Where I <em className="font-script text-gold not-italic">studied.</em>
+            </h3>
+            <ol className="relative border-l border-cream/15 ml-2 space-y-8">
+              {education.map((e) => (
+                <li key={e.title} className="pl-6 relative">
+                  <span className="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-gold" />
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-gold-soft">{e.period}</p>
+                  <h4 className="font-display text-cream text-xl mt-1 font-normal">{e.title}</h4>
+                  <p className="text-sm text-cream/80 italic font-display">{e.org}</p>
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="py-16 md:py-20 bg-background-deep/70">
+      <section id="contact" className="py-24 md:py-32 relative">
         <div className="container">
-          <div className="relative overflow-hidden rounded-[2rem] glass p-10 md:p-16" data-reveal>
-            <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-warm-grad opacity-30 blur-3xl" />
-            <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-cool-grad opacity-25 blur-3xl" />
-            <div className="relative grid md:grid-cols-2 gap-10 items-center">
-              <div>
-                <p className="text-xs uppercase tracking-[0.3em] text-primary mb-4 font-mono">Let's work together</p>
-                <h2 className="font-display text-4xl md:text-6xl font-bold leading-[1.05] mb-5">
-                  <span className="text-gradient">Have a brief?</span><br />
-                  <span className="text-iridescent">Let's make it sing.</span>
-                </h2>
-                <p className="text-cream-soft text-lg mb-7 max-w-md">
-                  Bringing creativity and efficiency to every project. Ready to collaborate
-                  on your next poster, logo, brand identity or AI web app.
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  <a href="mailto:shafisayd2415@gmail.com"
-                     className="inline-flex items-center gap-2 rounded-full bg-cool-grad text-white px-6 py-3 font-medium hover:shadow-glow transition-all">
-                    <Mail className="w-4 h-4" /> Email me
-                  </a>
-                  <a href="https://wa.me/918086429311?text=Hi%20Shafi%2C%20I%27d%20like%20to%20hire%20you%20for%20a%20design%20project."
-                     target="_blank" rel="noreferrer"
-                     className="inline-flex items-center gap-2 rounded-full glass text-cream px-6 py-3 font-medium hover:bg-white/10 transition-colors">
-                    <Phone className="w-4 h-4" /> WhatsApp
-                  </a>
-                </div>
-              </div>
-              <div className="space-y-3">
-                <a href="mailto:shafisayd2415@gmail.com" className="group flex items-center justify-between p-5 rounded-2xl glass hover:shadow-3d transition-shadow">
-                  <div>
-                    <p className="text-xs uppercase tracking-widest text-cream-soft font-mono">Email</p>
-                    <p className="font-display text-lg text-cream">shafisayd2415@gmail.com</p>
-                  </div>
-                  <ArrowUpRight className="w-5 h-5 text-cream-soft group-hover:text-primary transition-colors" />
-                </a>
-                <a href="https://wa.me/918086429311?text=Hi%20Shafi%2C%20I%27d%20like%20to%20hire%20you%20for%20a%20design%20project." target="_blank" rel="noreferrer" className="group flex items-center justify-between p-5 rounded-2xl glass hover:shadow-3d transition-shadow">
-                  <div>
-                    <p className="text-xs uppercase tracking-widest text-cream-soft font-mono">WhatsApp</p>
-                    <p className="font-display text-lg text-cream">(+91) 80864 29311</p>
-                  </div>
-                  <ArrowUpRight className="w-5 h-5 text-cream-soft group-hover:text-primary transition-colors" />
-                </a>
-                <div className="p-5 rounded-2xl glass">
-                  <p className="text-xs uppercase tracking-widest text-cream-soft font-mono">Based in</p>
-                  <p className="font-display text-lg text-cream">Areekode, Malappuram · Kerala, India</p>
-                </div>
+          <div className="text-center max-w-4xl mx-auto" data-reveal>
+            <p className="text-[11px] uppercase tracking-[0.4em] text-gold mb-6">○ Let's work together</p>
+            <h2 className="font-display text-cream text-6xl md:text-8xl lg:text-9xl leading-[0.9] font-light mb-2">
+              Let's
+            </h2>
+            <h2 className="font-script text-gold text-7xl md:text-9xl lg:text-[10rem] leading-none mb-10">
+              talk.
+            </h2>
+            <p className="text-cream-soft text-base md:text-lg max-w-xl mx-auto mb-10">
+              Have a brief, an idea or a half-formed thought? I read every message and reply within a day.
+            </p>
+            <div className="flex flex-wrap gap-3 justify-center mb-12">
+              <a href="mailto:shafisayd2415@gmail.com"
+                 className="inline-flex items-center gap-2 halftone-pill-cream px-7 py-3 text-[12px] uppercase tracking-[0.22em] font-medium">
+                <Mail className="w-3.5 h-3.5" /> Email me
+              </a>
+              <a href="https://wa.me/918086429311?text=Hi%20Shafi%2C%20I%27d%20like%20to%20hire%20you%20for%20a%20design%20project."
+                 target="_blank" rel="noreferrer"
+                 className="inline-flex items-center gap-2 halftone-pill px-7 py-3 text-[12px] uppercase tracking-[0.22em] text-cream">
+                <Phone className="w-3.5 h-3.5" /> WhatsApp
+              </a>
+            </div>
+
+            <div className="grid sm:grid-cols-3 gap-px bg-cream/10 border border-cream/10 rounded-xl overflow-hidden text-left">
+              <a href="mailto:shafisayd2415@gmail.com" className="group bg-background p-5 hover:bg-ink transition-colors">
+                <p className="text-[10px] uppercase tracking-[0.3em] text-gold mb-2">Email</p>
+                <p className="font-display text-cream text-base">shafisayd2415@gmail.com</p>
+              </a>
+              <a href="https://wa.me/918086429311" target="_blank" rel="noreferrer" className="group bg-background p-5 hover:bg-ink transition-colors">
+                <p className="text-[10px] uppercase tracking-[0.3em] text-gold mb-2">WhatsApp</p>
+                <p className="font-display text-cream text-base">(+91) 80864 29311</p>
+              </a>
+              <div className="bg-background p-5">
+                <p className="text-[10px] uppercase tracking-[0.3em] text-gold mb-2">Based in</p>
+                <p className="font-display text-cream text-base">Areekode, Kerala · India</p>
               </div>
             </div>
           </div>
@@ -477,10 +487,10 @@ const Index = () => {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-white/5 py-8">
-        <div className="container flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-cream-soft">
-          <p>© {new Date().getFullYear()} Mohammed Shafi TP · Graphic Designer · Sha Creatives</p>
-          <p className="font-serif-display italic">Crafted with care &amp; <span className="text-iridescent">✦</span> light.</p>
+      <footer className="border-t border-cream/10 py-8">
+        <div className="container flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-cream-soft">
+          <p className="uppercase tracking-[0.3em]">© {new Date().getFullYear()} Mohammed Shafi TP</p>
+          <p className="font-display italic text-cream">Crafted with care &amp; <span className="text-gold not-italic">✦</span> light.</p>
         </div>
       </footer>
     </div>
