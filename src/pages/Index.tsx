@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import Lenis from "lenis";
 import {
   Palette, Type, Wand2, ArrowUpRight, Sparkles, Mail, Phone,
   Briefcase, GraduationCap, Languages, Video,
@@ -148,13 +149,112 @@ const useReveal = () => {
   useEffect(() => {
     const els = document.querySelectorAll<HTMLElement>("[data-reveal]");
     const io = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("animate-fade-up")),
-      { threshold: 0.12 },
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-in");
+            io.unobserve(e.target);
+          }
+        }),
+      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" },
     );
     els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+
+    // Word-mask reveals
+    const wordEls = document.querySelectorAll<HTMLElement>(".reveal-words");
+    const wio = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-in");
+            wio.unobserve(e.target);
+          }
+        }),
+      { threshold: 0.3 },
+    );
+    wordEls.forEach((el) => wio.observe(el));
+
+    // Image curtain reveals
+    const imgEls = document.querySelectorAll<HTMLElement>(".reveal-image");
+    const iio = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-in");
+            iio.unobserve(e.target);
+          }
+        }),
+      { threshold: 0.2 },
+    );
+    imgEls.forEach((el) => iio.observe(el));
+
+    return () => {
+      io.disconnect();
+      wio.disconnect();
+      iio.disconnect();
+    };
   }, []);
 };
+
+/** Lenis smooth scroll — the DZ!NR-style buttery feel. */
+const useSmoothScroll = () => {
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const lenis = new Lenis({
+      duration: 1.25,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+    let raf = 0;
+    const tick = (time: number) => {
+      lenis.raf(time);
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => {
+      cancelAnimationFrame(raf);
+      lenis.destroy();
+    };
+  }, []);
+};
+
+/** Parallax + hero scrub via a single rAF loop reading scroll. */
+const useScrollFx = () => {
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const parallaxEls = Array.from(document.querySelectorAll<HTMLElement>("[data-parallax]"));
+    const heroEls = Array.from(document.querySelectorAll<HTMLElement>("[data-hero-pin]"));
+    let raf = 0;
+    const update = () => {
+      const vh = window.innerHeight;
+      for (const el of parallaxEls) {
+        const r = el.getBoundingClientRect();
+        const center = r.top + r.height / 2;
+        const py = (center - vh / 2) / vh; // ~ -1 .. 1
+        el.style.setProperty("--py", String(Math.max(-1, Math.min(1, py))));
+      }
+      for (const el of heroEls) {
+        const y = window.scrollY;
+        const p = Math.max(0, Math.min(1, y / (vh * 0.9)));
+        el.style.setProperty("--p", String(p));
+      }
+      raf = requestAnimationFrame(update);
+    };
+    raf = requestAnimationFrame(update);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+};
+
+/** Split a heading into word/letter spans for mask reveal. */
+const SplitWords = ({ text, className = "" }: { text: string; className?: string }) => (
+  <span className={`reveal-words ${className}`}>
+    {text.split(" ").map((w, i) => (
+      <span key={i} className="word">
+        <span style={{ ["--i" as never]: i }}>{w}</span>
+      </span>
+    ))}{" "}
+  </span>
+);
 
 const useTypewriter = (words: string[], typeMs = 70, eraseMs = 35, holdMs = 1400) => {
   const [text, setText] = useState("");
