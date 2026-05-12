@@ -204,6 +204,9 @@ const Index = () => {
 
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
+      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-cream focus:text-ink focus:px-4 focus:py-2 focus:rounded-full focus:text-xs focus:uppercase focus:tracking-[0.2em]">
+        Skip to content
+      </a>
       {/* Atmosphere */}
       <div className="vignette-overlay" aria-hidden />
       <div className="grain-overlay" aria-hidden />
@@ -211,28 +214,29 @@ const Index = () => {
       {/* NAV */}
       <header className="fixed top-4 inset-x-0 z-50 px-4">
         <div className="container max-w-6xl mx-auto">
-          <div className="liquid-glass rounded-full pl-5 pr-3 py-2 flex items-center justify-between">
+          <nav aria-label="Primary" className="liquid-glass rounded-full pl-5 pr-3 py-2 flex items-center justify-between">
             <a href="#top" className="flex items-baseline gap-1.5">
               <span className="font-display text-cream text-[18px] tracking-tight">Shafi</span>
               <span className="font-script text-gold text-[26px] leading-none -translate-y-[2px]">.</span>
             </a>
-            <nav className="hidden md:flex items-center gap-1 text-[13px] uppercase tracking-[0.18em]">
+            <ul className="hidden md:flex items-center gap-1 text-[13px] uppercase tracking-[0.18em] list-none p-0 m-0">
               {nav.map((n) => (
-                <a key={n.id} href={`#${n.id}`}
-                   className="px-4 py-2 rounded-full text-cream-soft hover:text-gold transition-colors">
-                  {n.label}
-                </a>
+                <li key={n.id}>
+                  <a href={`#${n.id}`} className="px-4 py-2 rounded-full text-cream-soft hover:text-gold transition-colors inline-block">
+                    {n.label}
+                  </a>
+                </li>
               ))}
-            </nav>
+            </ul>
             <a href="https://wa.me/918086429311?text=Hi%20Shafi%2C%20I%27d%20like%20to%20hire%20you%20for%20a%20design%20project."
                target="_blank" rel="noreferrer"
                className="hidden md:inline-flex items-center gap-2 halftone-pill-cream px-5 py-2 text-[12px] uppercase tracking-[0.2em] font-medium">
               Hire me <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
-            <button onClick={() => setOpen(!open)} className="md:hidden text-cream px-3 py-2" aria-label="Menu">☰</button>
-          </div>
+            <button onClick={() => setOpen(!open)} className="md:hidden text-cream px-3 py-2" aria-label="Toggle menu" aria-expanded={open} aria-controls="mobile-nav">☰</button>
+          </nav>
           {open && (
-            <div className="md:hidden mt-2 liquid-glass rounded-2xl">
+            <div id="mobile-nav" className="md:hidden mt-2 liquid-glass rounded-2xl">
               <div className="py-3 px-4 flex flex-col gap-1">
                 {nav.map((n) => (
                   <a key={n.id} href={`#${n.id}`} onClick={() => setOpen(false)}
@@ -246,8 +250,9 @@ const Index = () => {
         </div>
       </header>
 
+      <main id="main">
       {/* HERO — editorial centered composition */}
-      <section id="top" className="relative min-h-screen flex items-center justify-center pt-32 pb-20">
+      <section id="top" aria-label="Introduction" className="relative min-h-screen flex items-center justify-center pt-32 pb-20">
         <div className="container relative">
           <div className="flex flex-col items-center text-center animate-fade-up">
             {/* Year tag */}
