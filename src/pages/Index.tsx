@@ -359,48 +359,104 @@ const Index = () => {
       </section>
 
       {/* WORK — editorial numbered list */}
-      <section id="work" className="py-20 md:py-28 bg-ink/50 relative border-y border-cream/10">
+      <section id="work" aria-labelledby="work-heading" className="py-20 md:py-28 bg-ink/50 relative border-y border-cream/10">
         <div className="container">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6" data-reveal>
             <div>
               <p className="text-[11px] uppercase tracking-[0.4em] text-gold mb-5">○ Selected work · 2022—2026</p>
-              <h2 className="font-display text-cream text-5xl md:text-7xl leading-[0.95] font-light">
+              <h2 id="work-heading" className="font-display text-cream text-5xl md:text-7xl leading-[0.95] font-light">
                 Posters, logos &amp; <em className="font-script text-gold not-italic block leading-none md:text-8xl">brand identity.</em>
               </h2>
             </div>
             <p className="text-cream-soft md:text-right max-w-sm text-sm md:text-base">
-              Recent campaigns, identities and editorial pieces — from admission posters to
-              typographic brand marks.
+              A focused edit of the work I'm proudest of — recent campaigns,
+              editorial systems and brand marks across print, screen and Arabic typography.
             </p>
           </div>
 
-          <div className="border-t border-cream/15">
-            {projects.map((p, i) => (
-              <article key={p.title} data-reveal style={{ animationDelay: `${i * 60}ms` }}
-                className="group relative grid grid-cols-12 gap-6 items-center py-6 md:py-8 border-b border-cream/15 hover:bg-cream/[0.03] transition-colors">
-                <span className="col-span-2 md:col-span-1 font-display italic text-gold text-lg md:text-xl">
-                  0{i + 1}
-                </span>
-                <div className="col-span-10 md:col-span-5">
-                  <h3 className="font-display text-cream text-2xl md:text-3xl lg:text-4xl font-light leading-tight">
-                    {p.title}
-                  </h3>
-                </div>
-                <div className="hidden md:block md:col-span-3 text-cream-soft text-[12px] uppercase tracking-[0.25em]">
-                  {p.category}
-                </div>
-                <div className="col-span-12 md:col-span-3 relative">
-                  <div className="aspect-[4/3] overflow-hidden rounded-xl border border-cream/10 bg-background">
-                    <img src={p.img} alt={p.title} loading="lazy"
-                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+          {/* FEATURED — large cards */}
+          <div className="mb-16" aria-labelledby="featured-heading">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="h-px flex-1 bg-cream/15" />
+              <h3 id="featured-heading" className="font-display italic text-gold text-sm uppercase tracking-[0.35em]">
+                ✦ Featured
+              </h3>
+              <span className="h-px flex-1 bg-cream/15" />
+            </div>
+            <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+              {featuredProjects.map((p, i) => (
+                <article key={p.title} data-reveal style={{ animationDelay: `${i * 80}ms` }}
+                  className="group relative rounded-2xl overflow-hidden border border-cream/10 bg-background">
+                  <div className="relative aspect-[4/5] overflow-hidden">
+                    <img src={p.img} alt={p.alt} loading="lazy"
+                         className="w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.04]" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" aria-hidden />
+                    <div className="absolute top-4 left-4 halftone-pill px-3 py-1">
+                      <span className="font-display italic text-cream text-xs">{p.year}</span>
+                    </div>
                   </div>
-                </div>
-                <div className="col-span-12 md:col-span-11 md:col-start-2 -mt-2 md:hidden text-cream-soft text-[11px] uppercase tracking-[0.25em]">
-                  {p.category}
-                </div>
-                <ArrowUpRight className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-5 h-5 text-cream/30 group-hover:text-gold group-hover:rotate-12 transition-all" />
-              </article>
-            ))}
+                  <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
+                    <p className="text-[10px] uppercase tracking-[0.35em] text-gold mb-3">
+                      {p.category}
+                    </p>
+                    <h4 className="font-display text-cream text-2xl md:text-3xl font-light leading-tight mb-2">
+                      {p.title}
+                    </h4>
+                    <p className="text-cream-soft text-sm leading-relaxed max-w-md mb-4">{p.desc}</p>
+                    <ul className="flex flex-wrap gap-2 list-none p-0 m-0">
+                      {p.tags.map((t) => (
+                        <li key={t} className="text-[10px] uppercase tracking-[0.22em] text-cream/70 border border-cream/20 rounded-full px-2.5 py-0.5">
+                          {t}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <ArrowUpRight aria-hidden className="absolute top-5 right-5 w-5 h-5 text-cream/60 group-hover:text-gold group-hover:rotate-12 transition-all" />
+                </article>
+              ))}
+            </div>
+          </div>
+
+          {/* MORE — numbered editorial list */}
+          <div aria-labelledby="more-heading">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="h-px flex-1 bg-cream/15" />
+              <h3 id="more-heading" className="font-display italic text-gold text-sm uppercase tracking-[0.35em]">
+                ✦ More work
+              </h3>
+              <span className="h-px flex-1 bg-cream/15" />
+            </div>
+            <ol className="border-t border-cream/15 list-none p-0 m-0">
+              {otherProjects.map((p, i) => (
+                <li key={p.title}>
+                  <article data-reveal style={{ animationDelay: `${i * 60}ms` }}
+                    className="group relative grid grid-cols-12 gap-6 items-center py-6 md:py-8 border-b border-cream/15 hover:bg-cream/[0.03] transition-colors">
+                    <span aria-hidden className="col-span-2 md:col-span-1 font-display italic text-gold text-lg md:text-xl">
+                      0{i + 3}
+                    </span>
+                    <div className="col-span-10 md:col-span-5">
+                      <h4 className="font-display text-cream text-2xl md:text-3xl lg:text-4xl font-light leading-tight">
+                        {p.title}
+                      </h4>
+                      <p className="text-cream-soft text-sm mt-1">{p.client} · {p.year}</p>
+                    </div>
+                    <div className="hidden md:block md:col-span-3 text-cream-soft text-[12px] uppercase tracking-[0.25em]">
+                      {p.category}
+                    </div>
+                    <div className="col-span-12 md:col-span-3 relative">
+                      <div className="aspect-[4/3] overflow-hidden rounded-xl border border-cream/10 bg-background">
+                        <img src={p.img} alt={p.alt} loading="lazy"
+                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                      </div>
+                    </div>
+                    <div className="col-span-12 md:col-span-11 md:col-start-2 -mt-2 md:hidden text-cream-soft text-[11px] uppercase tracking-[0.25em]">
+                      {p.category}
+                    </div>
+                    <ArrowUpRight aria-hidden className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-5 h-5 text-cream/30 group-hover:text-gold group-hover:rotate-12 transition-all" />
+                  </article>
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
       </section>
