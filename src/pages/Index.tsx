@@ -629,6 +629,7 @@ const Index = () => {
           <p className="font-display italic text-cream">Crafted with care &amp; <span className="text-gold not-italic">✦</span> light.</p>
         </div>
       </footer>
+      </main>
     </div>
   );
 };
