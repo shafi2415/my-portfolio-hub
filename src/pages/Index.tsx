@@ -325,7 +325,7 @@ const Index = () => {
       </div>
 
       {/* SERVICES */}
-      <section id="services" className="py-20 md:py-28 relative">
+      <section id="services" aria-label="Services" className="py-20 md:py-28 relative">
         <div className="container relative">
           <div className="grid md:grid-cols-12 gap-10 mb-14" data-reveal>
             <div className="md:col-span-5">
