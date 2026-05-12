@@ -12,6 +12,8 @@ import logo2 from "@/assets/work/logo-2.jpg";
 import logo3 from "@/assets/work/logo-3.jpg";
 import daroraApp from "@/assets/work/darora-royal-app.png";
 import kinderjoyApp from "@/assets/work/kinderjoy-app.png";
+import quranClassPoster from "@/assets/work/quran-class-poster.png";
+import furnitureCatalog from "@/assets/work/furniture-catalog.jpg";
 
 const ROLES = [
   "Graphic Designer",
@@ -57,15 +59,88 @@ const education = [
   { title: "Bachelor of Arts (BA)", org: "University of Calicut", period: "Apr 2019 — Mar 2022" },
 ];
 
-const projects = [
-  { img: daroraApp, title: "Darora Royal Group · POS App", category: "AI Web App · UI/UX", desc: "Mobile-first dashboard for sales, inventory and ledger." },
-  { img: kinderjoyApp, title: "Kinderjoy · Zidnee Islamic School", category: "AI Web App · EdTech", desc: "Playful learning app for kids with gamified lessons." },
-  { img: postersA, title: "Sha Creatives · Poster Vol. 1", category: "Social & Print", desc: "Admission, event and brand campaign posters." },
-  { img: logo1, title: "Malja'a Shareeath", category: "Logo · Branding", desc: "Crest mark blending Arabic calligraphy with an arch motif." },
-  { img: postersB, title: "Sha Creatives · Poster Vol. 2", category: "Campaign Creatives", desc: "Long-form campaign posters across multiple sectors." },
-  { img: logo2, title: "Monogram in Stone", category: "Logo · Brand Mark", desc: "Geometric monogram embossed on a textured canvas." },
-  { img: logo3, title: "Al Ishraq Identity", category: "Logo · Print", desc: "Bold Arabic display logotype with English wordmark." },
+type Project = {
+  img: string;
+  title: string;
+  category: string;
+  year: string;
+  client: string;
+  tags: string[];
+  desc: string;
+  alt: string;
+  featured?: boolean;
+};
+
+const projects: Project[] = [
+  {
+    img: furnitureCatalog, title: "Roots Arch · Furniture Catalog 2026",
+    category: "Editorial · Print", year: "2026", client: "Roots Arch FF&E Contractors",
+    tags: ["Editorial", "Print", "Layout", "Typography"],
+    desc: "Cover and 40-page catalog system for a contract furniture brand — display serif lockup, structured grids and cinematic product photography.",
+    alt: "Furniture Catalog 2026 cover for Roots Arch with bold serif typography over a styled living room scene.",
+    featured: true,
+  },
+  {
+    img: quranClassPoster, title: "Parakkulam Masjid · Qur'an Class",
+    category: "Poster · Arabic Typography", year: "2026", client: "Parakkulam Masjid Committee",
+    tags: ["Poster", "Arabic", "Malayalam", "Event"],
+    desc: "Event poster for a community Qur'an study circle — custom Arabic title treatment, Malayalam body and a cool indigo palette.",
+    alt: "Qur'an class event poster in indigo and cyan with stylised Arabic title and Malayalam supporting text.",
+    featured: true,
+  },
+  {
+    img: daroraApp, title: "Darora Royal Group · POS App",
+    category: "AI Web App · UI/UX", year: "2025", client: "Darora Royal Group",
+    tags: ["Product", "UI/UX", "AI"],
+    desc: "Mobile-first point-of-sale and ledger dashboard for a multi-branch retail group.",
+    alt: "Mobile-first point-of-sale dashboard UI for Darora Royal Group on a phone mockup.",
+  },
+  {
+    img: kinderjoyApp, title: "Kinderjoy · Zidnee Islamic School",
+    category: "AI Web App · EdTech", year: "2025", client: "Zidnee Online Islamic School",
+    tags: ["Product", "EdTech", "AI"],
+    desc: "Playful learning app for kids with gamified Islamic studies lessons and progress tracking.",
+    alt: "Kinderjoy children's learning app interface for Zidnee Islamic School.",
+  },
+  {
+    img: postersA, title: "Sha Creatives · Poster Vol. 1",
+    category: "Social & Print", year: "2024", client: "Sha Creatives",
+    tags: ["Poster", "Campaign", "Social"],
+    desc: "Admission, event and brand campaign posters across English, Arabic and Malayalam.",
+    alt: "Collection of admission and campaign posters designed by Sha Creatives.",
+  },
+  {
+    img: logo1, title: "Malja'a Shareeath",
+    category: "Logo · Branding", year: "2024", client: "Malja'a Shareeath College",
+    tags: ["Logo", "Identity", "Arabic"],
+    desc: "Crest mark blending Arabic calligraphy with an arch motif representing knowledge and shelter.",
+    alt: "Malja'a Shareeath crest logo combining Arabic calligraphy with an architectural arch.",
+  },
+  {
+    img: postersB, title: "Sha Creatives · Poster Vol. 2",
+    category: "Campaign Creatives", year: "2024", client: "Sha Creatives",
+    tags: ["Poster", "Campaign"],
+    desc: "Long-form campaign posters spanning education, retail and community sectors.",
+    alt: "Second volume of campaign posters by Sha Creatives across multiple sectors.",
+  },
+  {
+    img: logo2, title: "Monogram in Stone",
+    category: "Logo · Brand Mark", year: "2023", client: "Private studio",
+    tags: ["Logo", "Monogram"],
+    desc: "Geometric monogram embossed on a textured canvas — quiet, architectural confidence.",
+    alt: "Geometric monogram brand mark embossed on a textured stone-like surface.",
+  },
+  {
+    img: logo3, title: "Al Ishraq Identity",
+    category: "Logo · Print", year: "2023", client: "Al Ishraq",
+    tags: ["Logo", "Arabic", "Identity"],
+    desc: "Bold Arabic display logotype paired with a refined English wordmark.",
+    alt: "Al Ishraq brand identity with bold Arabic display logotype and English wordmark.",
+  },
 ];
+
+const featuredProjects = projects.filter((p) => p.featured);
+const otherProjects = projects.filter((p) => !p.featured);
 
 const TICKER = ["Graphic Design", "Brand Identity", "Editorial", "Posters", "Logos", "Sha Creatives", "Available 2026"];
 
