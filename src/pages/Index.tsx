@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import Lenis from "lenis";
 import {
   Palette, Type, Wand2, ArrowUpRight, Sparkles, Mail, Phone,
   Briefcase, GraduationCap, Languages, Video,
@@ -148,13 +149,112 @@ const useReveal = () => {
   useEffect(() => {
     const els = document.querySelectorAll<HTMLElement>("[data-reveal]");
     const io = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("animate-fade-up")),
-      { threshold: 0.12 },
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-in");
+            io.unobserve(e.target);
+          }
+        }),
+      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" },
     );
     els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+
+    // Word-mask reveals
+    const wordEls = document.querySelectorAll<HTMLElement>(".reveal-words");
+    const wio = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-in");
+            wio.unobserve(e.target);
+          }
+        }),
+      { threshold: 0.3 },
+    );
+    wordEls.forEach((el) => wio.observe(el));
+
+    // Image curtain reveals
+    const imgEls = document.querySelectorAll<HTMLElement>(".reveal-image");
+    const iio = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-in");
+            iio.unobserve(e.target);
+          }
+        }),
+      { threshold: 0.2 },
+    );
+    imgEls.forEach((el) => iio.observe(el));
+
+    return () => {
+      io.disconnect();
+      wio.disconnect();
+      iio.disconnect();
+    };
   }, []);
 };
+
+/** Lenis smooth scroll — the DZ!NR-style buttery feel. */
+const useSmoothScroll = () => {
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const lenis = new Lenis({
+      duration: 1.25,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+    let raf = 0;
+    const tick = (time: number) => {
+      lenis.raf(time);
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => {
+      cancelAnimationFrame(raf);
+      lenis.destroy();
+    };
+  }, []);
+};
+
+/** Parallax + hero scrub via a single rAF loop reading scroll. */
+const useScrollFx = () => {
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const parallaxEls = Array.from(document.querySelectorAll<HTMLElement>("[data-parallax]"));
+    const heroEls = Array.from(document.querySelectorAll<HTMLElement>("[data-hero-pin]"));
+    let raf = 0;
+    const update = () => {
+      const vh = window.innerHeight;
+      for (const el of parallaxEls) {
+        const r = el.getBoundingClientRect();
+        const center = r.top + r.height / 2;
+        const py = (center - vh / 2) / vh; // ~ -1 .. 1
+        el.style.setProperty("--py", String(Math.max(-1, Math.min(1, py))));
+      }
+      for (const el of heroEls) {
+        const y = window.scrollY;
+        const p = Math.max(0, Math.min(1, y / (vh * 0.9)));
+        el.style.setProperty("--p", String(p));
+      }
+      raf = requestAnimationFrame(update);
+    };
+    raf = requestAnimationFrame(update);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+};
+
+/** Split a heading into word/letter spans for mask reveal. */
+const SplitWords = ({ text, className = "" }: { text: string; className?: string }) => (
+  <span className={`reveal-words ${className}`}>
+    {text.split(" ").map((w, i) => (
+      <span key={i} className="word">
+        <span style={{ ["--i" as never]: i }}>{w}</span>
+      </span>
+    ))}{" "}
+  </span>
+);
 
 const useTypewriter = (words: string[], typeMs = 70, eraseMs = 35, holdMs = 1400) => {
   const [text, setText] = useState("");
@@ -193,6 +293,8 @@ const Dot = ({ filled = false, className = "" }: { filled?: boolean; className?:
 
 const Index = () => {
   useReveal();
+  useSmoothScroll();
+  useScrollFx();
   const role = useTypewriter(ROLES);
   const [open, setOpen] = useState(false);
   const nav = [
@@ -254,7 +356,7 @@ const Index = () => {
       {/* HERO — editorial centered composition */}
       <section id="top" aria-label="Introduction" className="relative min-h-screen flex items-center justify-center pt-32 pb-20">
         <div className="container relative">
-          <div className="flex flex-col items-center text-center animate-fade-up">
+          <div className="flex flex-col items-center text-center" data-hero-pin>
             {/* Year tag */}
             <div className="flex items-center gap-3 mb-10">
               <Dot />
@@ -271,10 +373,12 @@ const Index = () => {
               {/* right pill behind 'LIO' */}
               <div className="hidden md:block absolute right-[2%] top-[12%] w-[34%] h-[55%] halftone-pill rotate-[2deg] z-0" aria-hidden />
 
-              <h1 className="relative z-10 font-display text-cream font-light leading-[0.85] tracking-tight"
+              <h1 className="relative z-10 font-display text-cream font-light leading-[0.85] tracking-tight reveal-words"
                   style={{ fontVariationSettings: '"opsz" 144, "wght" 400, "SOFT" 50' }}>
                 <span className="block" style={{ fontSize: "clamp(3.5rem, 16vw, 14rem)" }}>
-                  PORTFOLIO
+                  {"PORTFOLIO".split("").map((c, i) => (
+                    <span key={i} className="word"><span style={{ ["--i" as never]: i }}>{c}</span></span>
+                  ))}
                 </span>
               </h1>
 
@@ -387,9 +491,9 @@ const Index = () => {
               {featuredProjects.map((p, i) => (
                 <article key={p.title} data-reveal style={{ animationDelay: `${i * 80}ms` }}
                   className="group relative rounded-2xl overflow-hidden border border-cream/10 bg-background">
-                  <div className="relative aspect-[4/5] overflow-hidden">
+                  <div className="relative aspect-[4/5] overflow-hidden reveal-image">
                     <img src={p.img} alt={p.alt} loading="lazy"
-                         className="w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.04]" />
+                         className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" aria-hidden />
                     <div className="absolute top-4 left-4 halftone-pill px-3 py-1">
                       <span className="font-display italic text-cream text-xs">{p.year}</span>
@@ -444,7 +548,7 @@ const Index = () => {
                       {p.category}
                     </div>
                     <div className="col-span-12 md:col-span-3 relative">
-                      <div className="aspect-[4/3] overflow-hidden rounded-xl border border-cream/10 bg-background">
+                      <div className="aspect-[4/3] overflow-hidden rounded-xl border border-cream/10 bg-background reveal-image">
                         <img src={p.img} alt={p.alt} loading="lazy"
                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                       </div>
@@ -466,7 +570,7 @@ const Index = () => {
         <div className="container">
           <div className="grid md:grid-cols-12 gap-10 lg:gap-16 items-center" data-reveal>
             <div className="md:col-span-5 relative">
-              <div className="relative aspect-[4/5] max-w-[420px] mx-auto rounded-2xl overflow-hidden border border-cream/10">
+              <div className="relative aspect-[4/5] max-w-[420px] mx-auto rounded-2xl overflow-hidden border border-cream/10 reveal-image" data-parallax>
                 <div className="absolute inset-0 bg-ink" />
                 <img src={heroPortrait} alt="Portrait of Mohammed Shafi TP, graphic designer and founder of Sha Creatives"
                      className="absolute inset-0 w-full h-full object-cover object-[center_20%] duotone-portrait" />
