@@ -321,14 +321,13 @@
   .reveal-image.is-in img { transform: scale(1); }
 
   /* Parallax helper — JS sets --py based on viewport position (-1 to 1) */
-  .parallax { transform: translate3d(0, calc(var(--py, 0) * 80px), 0); will-change: transform; }
-  .parallax-soft { transform: translate3d(0, calc(var(--py, 0) * 40px), 0); will-change: transform; }
+  [data-parallax] { transform: translate3d(0, calc(var(--py, 0) * 60px), 0); will-change: transform; }
+  [data-parallax="soft"] { transform: translate3d(0, calc(var(--py, 0) * 30px), 0); }
 
   /* Hero giant — scrubbed scale & fade as you scroll */
-  .hero-pin {
-    transform: scale(calc(1 - var(--p, 0) * 0.08)) translate3d(0, calc(var(--p, 0) * -40px), 0);
-    opacity: calc(1 - var(--p, 0) * 0.6);
-    transition: transform 0.05s linear, opacity 0.05s linear;
+  [data-hero-pin] {
+    transform: scale(calc(1 - var(--p, 0) * 0.06)) translate3d(0, calc(var(--p, 0) * -30px), 0);
+    opacity: calc(1 - var(--p, 0) * 0.5);
     will-change: transform, opacity;
   }
 
@@ -337,6 +336,6 @@
     .reveal-words .word > span { transform: none !important; }
     .reveal-image::after { display: none; }
     .reveal-image img { transform: none !important; }
-    .parallax, .parallax-soft, .hero-pin { transform: none !important; opacity: 1 !important; }
+    [data-parallax], [data-hero-pin] { transform: none !important; opacity: 1 !important; }
   }
 }
