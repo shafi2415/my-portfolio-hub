@@ -622,6 +622,7 @@ const Index = () => {
         </div>
       </section>
 
+      </main>
       {/* FOOTER */}
       <footer className="border-t border-cream/10 py-8">
         <div className="container flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-cream-soft">
@@ -629,7 +630,6 @@ const Index = () => {
           <p className="font-display italic text-cream">Crafted with care &amp; <span className="text-gold not-italic">✦</span> light.</p>
         </div>
       </footer>
-      </main>
     </div>
   );
 };
