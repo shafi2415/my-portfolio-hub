@@ -356,7 +356,7 @@ const Index = () => {
       {/* HERO — editorial centered composition */}
       <section id="top" aria-label="Introduction" className="relative min-h-screen flex items-center justify-center pt-32 pb-20">
         <div className="container relative">
-          <div className="flex flex-col items-center text-center animate-fade-up" data-hero-pin>
+          <div className="flex flex-col items-center text-center" data-hero-pin>
             {/* Year tag */}
             <div className="flex items-center gap-3 mb-10">
               <Dot />
