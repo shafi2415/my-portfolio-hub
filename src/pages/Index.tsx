@@ -462,13 +462,13 @@ const Index = () => {
       </section>
 
       {/* ABOUT — duotone portrait + bio */}
-      <section id="about" className="py-20 md:py-28 relative">
+      <section id="about" aria-label="About" className="py-20 md:py-28 relative">
         <div className="container">
           <div className="grid md:grid-cols-12 gap-10 lg:gap-16 items-center" data-reveal>
             <div className="md:col-span-5 relative">
               <div className="relative aspect-[4/5] max-w-[420px] mx-auto rounded-2xl overflow-hidden border border-cream/10">
                 <div className="absolute inset-0 bg-ink" />
-                <img src={heroPortrait} alt="Mohammed Shafi TP"
+                <img src={heroPortrait} alt="Portrait of Mohammed Shafi TP, graphic designer and founder of Sha Creatives"
                      className="absolute inset-0 w-full h-full object-cover object-[center_20%] duotone-portrait" />
                 <div className="absolute inset-0 bg-gradient-to-tr from-gold/20 via-transparent to-transparent mix-blend-overlay" />
                 <div className="absolute bottom-4 left-4 halftone-pill px-4 py-2 flex items-center gap-2">
@@ -534,7 +534,7 @@ const Index = () => {
       </section>
 
       {/* EXPERIENCE + EDUCATION */}
-      <section id="experience" className="py-20 md:py-28 bg-ink/50 border-y border-cream/10">
+      <section id="experience" aria-label="Experience and education" className="py-20 md:py-28 bg-ink/50 border-y border-cream/10">
         <div className="container grid md:grid-cols-2 gap-12 md:gap-16">
           <div data-reveal>
             <div className="flex items-center gap-3 mb-8">
@@ -579,7 +579,7 @@ const Index = () => {
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="py-24 md:py-32 relative">
+      <section id="contact" aria-label="Contact" className="py-24 md:py-32 relative">
         <div className="container">
           <div className="text-center max-w-4xl mx-auto" data-reveal>
             <p className="text-[11px] uppercase tracking-[0.4em] text-gold mb-6">○ Let's work together</p>
