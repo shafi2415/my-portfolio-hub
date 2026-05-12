@@ -373,7 +373,7 @@ const Index = () => {
               {/* right pill behind 'LIO' */}
               <div className="hidden md:block absolute right-[2%] top-[12%] w-[34%] h-[55%] halftone-pill rotate-[2deg] z-0" aria-hidden />
 
-              <h1 className="relative z-10 font-display text-cream font-light leading-[0.85] tracking-tight reveal-words is-in"
+              <h1 className="relative z-10 font-display text-cream font-light leading-[0.85] tracking-tight reveal-words"
                   style={{ fontVariationSettings: '"opsz" 144, "wght" 400, "SOFT" 50' }}>
                 <span className="block" style={{ fontSize: "clamp(3.5rem, 16vw, 14rem)" }}>
                   {"PORTFOLIO".split("").map((c, i) => (
