@@ -388,6 +388,7 @@ const Index = () => {
             </ul>
             <a href="https://wa.me/918086429311?text=Hi%20Shafi%2C%20I%27d%20like%20to%20hire%20you%20for%20a%20design%20project."
                target="_blank" rel="noreferrer"
+               data-magnetic="0.3"
                className="hidden md:inline-flex items-center gap-2 halftone-pill-cream px-5 py-2 text-[12px] uppercase tracking-[0.2em] font-medium">
               Hire me <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
@@ -461,10 +462,10 @@ const Index = () => {
                 posters and AI-powered web experiences. A multilingual eye for English, Arabic, Urdu and Malayalam typography.
               </p>
               <div className="flex flex-wrap gap-3 pt-2 justify-center">
-                <a href="#work" className="group inline-flex items-center gap-2 halftone-pill-cream px-7 py-3 text-[12px] uppercase tracking-[0.22em] font-medium">
+                <a href="#work" data-magnetic="0.25" className="group inline-flex items-center gap-2 halftone-pill-cream px-7 py-3 text-[12px] uppercase tracking-[0.22em] font-medium">
                   See the work <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                 </a>
-                <a href="#contact" className="inline-flex items-center gap-2 halftone-pill px-7 py-3 text-[12px] uppercase tracking-[0.22em] text-cream">
+                <a href="#contact" data-magnetic="0.25" className="inline-flex items-center gap-2 halftone-pill px-7 py-3 text-[12px] uppercase tracking-[0.22em] text-cream">
                   Start a project
                 </a>
               </div>
