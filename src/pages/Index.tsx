@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Lenis from "lenis";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Palette, Type, Wand2, ArrowUpRight, Sparkles, Mail, Phone,
   Briefcase, GraduationCap, Languages, Video,
@@ -15,6 +17,8 @@ import daroraApp from "@/assets/work/darora-royal-app.png";
 import kinderjoyApp from "@/assets/work/kinderjoy-app.png";
 import quranClassPoster from "@/assets/work/quran-class-poster.png";
 import furnitureCatalog from "@/assets/work/furniture-catalog.jpg";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const ROLES = [
   "Graphic Designer",
@@ -145,103 +149,156 @@ const otherProjects = projects.filter((p) => !p.featured);
 
 const TICKER = ["Graphic Design", "Brand Identity", "Editorial", "Posters", "Logos", "Sha Creatives", "Available 2026"];
 
-const useReveal = () => {
+/**
+ * Unified motion: Lenis smooth scroll synced to GSAP ticker, per-section
+ * stagger reveals via ScrollTrigger, scrubbed parallax + hero handoff.
+ */
+const useMotion = () => {
   useEffect(() => {
-    const els = document.querySelectorAll<HTMLElement>("[data-reveal]");
-    const io = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add("is-in");
-            io.unobserve(e.target);
-          }
-        }),
-      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" },
-    );
-    els.forEach((el) => io.observe(el));
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    // Word-mask reveals
+    // Word-mask + image-curtain reveals (kept as IO; class-driven CSS handles them)
     const wordEls = document.querySelectorAll<HTMLElement>(".reveal-words");
     const wio = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add("is-in");
-            wio.unobserve(e.target);
-          }
-        }),
-      { threshold: 0.3 },
+      (entries) => entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add("is-in"); wio.unobserve(e.target); }
+      }),
+      { threshold: 0.25 },
     );
     wordEls.forEach((el) => wio.observe(el));
 
-    // Image curtain reveals
     const imgEls = document.querySelectorAll<HTMLElement>(".reveal-image");
     const iio = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add("is-in");
-            iio.unobserve(e.target);
-          }
-        }),
+      (entries) => entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add("is-in"); iio.unobserve(e.target); }
+      }),
       { threshold: 0.2 },
     );
     imgEls.forEach((el) => iio.observe(el));
 
+    if (reduced) {
+      // Show everything statically
+      document.querySelectorAll<HTMLElement>("[data-reveal]").forEach((el) => {
+        el.style.opacity = "1"; el.style.transform = "none";
+      });
+      return () => { wio.disconnect(); iio.disconnect(); };
+    }
+
+    // Lenis ↔ GSAP sync
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+    lenis.on("scroll", ScrollTrigger.update);
+    const tickerCb = (time: number) => lenis.raf(time * 1000);
+    gsap.ticker.add(tickerCb);
+    gsap.ticker.lagSmoothing(0);
+
+    // Smooth anchor jumps
+    const onAnchorClick = (e: MouseEvent) => {
+      const link = (e.target as HTMLElement | null)?.closest?.('a[href^="#"]') as HTMLAnchorElement | null;
+      if (!link) return;
+      const href = link.getAttribute("href") || "";
+      if (href.length < 2 || href.startsWith("#!")) return;
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      lenis.scrollTo(target as HTMLElement, { offset: -80, duration: 1.2 });
+    };
+    document.addEventListener("click", onAnchorClick);
+
+    const ctx = gsap.context(() => {
+      // Per-section staggered reveals
+      gsap.utils.toArray<HTMLElement>("section[id]").forEach((section) => {
+        const items = section.querySelectorAll<HTMLElement>("[data-reveal]");
+        if (!items.length) return;
+        gsap.set(items, { y: 56, opacity: 0, willChange: "transform, opacity" });
+        gsap.to(items, {
+          y: 0,
+          opacity: 1,
+          duration: 1.1,
+          ease: "power3.out",
+          stagger: 0.09,
+          scrollTrigger: { trigger: section, start: "top 78%", once: true },
+        });
+      });
+
+      // Scrubbed parallax
+      gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((el) => {
+        gsap.fromTo(el,
+          { yPercent: -6 },
+          { yPercent: 6, ease: "none",
+            scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true },
+          });
+      });
+
+      // Hero handoff — scrub fade/blur/scale as you scroll past the fold
+      const hero = document.querySelector<HTMLElement>("[data-hero-pin]");
+      if (hero) {
+        gsap.to(hero, {
+          scale: 0.82,
+          y: -50,
+          filter: "blur(6px)",
+          opacity: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: hero, start: "top top+=60", end: "+=70%", scrub: 0.5,
+          },
+        });
+      }
+
+      // Marquee speed reacts to scroll velocity
+      const marquee = document.querySelector<HTMLElement>(".marquee");
+      if (marquee) {
+        let target = 1, current = 1;
+        lenis.on("scroll", ({ velocity }: { velocity: number }) => {
+          target = 1 + Math.min(2.5, Math.abs(velocity) / 18);
+        });
+        gsap.ticker.add(() => {
+          current += (target - current) * 0.06;
+          target += (1 - target) * 0.04;
+          marquee.style.animationDuration = `${Math.max(8, 50 / current)}s`;
+        });
+      }
+    });
+
     return () => {
-      io.disconnect();
+      document.removeEventListener("click", onAnchorClick);
+      gsap.ticker.remove(tickerCb);
+      ctx.revert();
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+      lenis.destroy();
       wio.disconnect();
       iio.disconnect();
     };
   }, []);
 };
 
-/** Lenis smooth scroll — the DZ!NR-style buttery feel. */
-const useSmoothScroll = () => {
+/** Magnetic hover for CTAs — translates element toward cursor, springs back. */
+const useMagnetic = () => {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const lenis = new Lenis({
-      duration: 1.25,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-    });
-    let raf = 0;
-    const tick = (time: number) => {
-      lenis.raf(time);
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => {
-      cancelAnimationFrame(raf);
-      lenis.destroy();
-    };
-  }, []);
-};
-
-/** Parallax + hero scrub via a single rAF loop reading scroll. */
-const useScrollFx = () => {
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const parallaxEls = Array.from(document.querySelectorAll<HTMLElement>("[data-parallax]"));
-    const heroEls = Array.from(document.querySelectorAll<HTMLElement>("[data-hero-pin]"));
-    let raf = 0;
-    const update = () => {
-      const vh = window.innerHeight;
-      for (const el of parallaxEls) {
+    const els = Array.from(document.querySelectorAll<HTMLElement>("[data-magnetic]"));
+    const cleanups: Array<() => void> = [];
+    els.forEach((el) => {
+      const strength = Number(el.dataset.magnetic) || 0.25;
+      el.style.transition = "transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)";
+      const move = (e: MouseEvent) => {
         const r = el.getBoundingClientRect();
-        const center = r.top + r.height / 2;
-        const py = (center - vh / 2) / vh; // ~ -1 .. 1
-        el.style.setProperty("--py", String(Math.max(-1, Math.min(1, py))));
-      }
-      for (const el of heroEls) {
-        const y = window.scrollY;
-        const p = Math.max(0, Math.min(1, y / (vh * 0.9)));
-        el.style.setProperty("--p", String(p));
-      }
-      raf = requestAnimationFrame(update);
-    };
-    raf = requestAnimationFrame(update);
-    return () => cancelAnimationFrame(raf);
+        const x = e.clientX - (r.left + r.width / 2);
+        const y = e.clientY - (r.top + r.height / 2);
+        el.style.transform = `translate3d(${x * strength}px, ${y * strength}px, 0)`;
+      };
+      const reset = () => { el.style.transform = "translate3d(0,0,0)"; };
+      el.addEventListener("mousemove", move);
+      el.addEventListener("mouseleave", reset);
+      cleanups.push(() => {
+        el.removeEventListener("mousemove", move);
+        el.removeEventListener("mouseleave", reset);
+      });
+    });
+    return () => cleanups.forEach((c) => c());
   }, []);
 };
 
@@ -292,9 +349,8 @@ const Dot = ({ filled = false, className = "" }: { filled?: boolean; className?:
 );
 
 const Index = () => {
-  useReveal();
-  useSmoothScroll();
-  useScrollFx();
+  useMotion();
+  useMagnetic();
   const role = useTypewriter(ROLES);
   const [open, setOpen] = useState(false);
   const nav = [
