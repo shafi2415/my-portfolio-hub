@@ -17,6 +17,7 @@ import daroraApp from "@/assets/work/darora-royal-app.png";
 import kinderjoyApp from "@/assets/work/kinderjoy-app.png";
 import quranClassPoster from "@/assets/work/quran-class-poster.png";
 import furnitureCatalog from "@/assets/work/furniture-catalog.jpg";
+import yatheemkhanaAdmission from "@/assets/work/yatheemkhana-admission.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -77,6 +78,14 @@ type Project = {
 };
 
 const projects: Project[] = [
+  {
+    img: yatheemkhanaAdmission, title: "Maljaul Aytham Orphanage · Admission Campaign",
+    category: "Poster · Malayalam Typography", year: "2026", client: "Maljaul Aytham Orphanage, Elayur",
+    tags: ["Poster", "Malayalam", "Campaign", "Social"],
+    desc: "Admission campaign creative for an orphanage in Malappuram — bold Malayalam display lettering, a violet-and-gold palette and a focal yellow speech-bubble lockup announcing the new batch.",
+    alt: "Admission campaign poster for Maljaul Aytham Orphanage Elayur with bold Malayalam typography, graduation cap motifs and a yellow call-to-action bubble on a violet background.",
+    featured: true,
+  },
   {
     img: furnitureCatalog, title: "Roots Arch · Furniture Catalog 2026",
     category: "Editorial · Print", year: "2026", client: "Roots Arch FF&E Contractors",
