@@ -229,7 +229,12 @@ const useMotion = () => {
           duration: 1.1,
           ease: "power3.out",
           stagger: 0.09,
-          scrollTrigger: { trigger: section, start: "top 78%", once: true },
+          scrollTrigger: {
+            trigger: section,
+            start: "top 78%",
+            end: "bottom 20%",
+            toggleActions: "play reverse play reverse",
+          },
         });
       });
 
